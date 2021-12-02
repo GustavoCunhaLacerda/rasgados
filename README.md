@@ -37,3 +37,20 @@ Tendo em vista a existência das três áreas mencionadas, justifica-se a quanti
 - Orientação a objetos
 - Orientação a eventos
 - Funcional
+
+**Cronograma**
+|  | Definir Equipe | Escolher Tema do Projeto | Pesquisar Ferramentas | Decidir Nome do Projeto | Pesquisar sobre os Animais e Biomas | Criação das Artes | Prototipação no Figma | Back-End (API com informações) | Front-End |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Semana 1 (17/10 - 23/10) |       X |       X |          X |  |  |  |  |  |  |
+| Semana 2 (24/10 - 30/10) |  |       X |          X |  |  |  |  |  |  |
+| Semana 3 (31/10 - 06/11) |  |       X |          X |        |  |  |  |  |  |
+| Semana 4 (07/11 - 13/11) |  |  |  |       X |         X |  |  |  |  |
+| Semana 5 (14/11 - 20/11) |  |  |  |  |         X |       X |  |  |  |
+| Semana 6 (21/11 - 27/11) |  |  |  |  |         X |       X |           X |  |  |
+| Semana 7 (28/11 - 04/12) |  |  |  |  |  |       X |           X |          X |  |
+| Semana 8 (05/12 - 11/12) |  |  |  |  |  |       X |           X |          X |  |
+| Semana 9 (12/12 - 18/12) |  |  |  |  |  |       X |           X |          X |          X |
+| Semana 10 (19/12 - 25/12) |  |  |  |  |  |  |  |  |          X |
+| Semana 11 (26/12 - 01/01) |  |  |  |  |  |  |  |  |          X |
+| Semana 12 (02/01 - 08/01) |  |  |  |  |  |  |  |  |          X |
+| Semana 13 (09/01 - 15/01) |  |  |  |  |  |  |  |  |          X |
