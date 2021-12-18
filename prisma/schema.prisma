@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Image {
+  id       Int     @id @default(autoincrement())
+  data     Bytes
+  name     String
+  Animal   Animal? @relation(fields: [animalId], references: [id])
+  animalId Int?
+  Threat   Threat? @relation(fields: [threatId], references: [id])
+  threatId Int?
+  Biome    Biome?  @relation(fields: [biomeId], references: [id])
+  biomeId  Int?
+
+  @@map("images")
+}
+
+model Animal {
+  id                 Int                @id @default(autoincrement())
+  svgIcon            String
+  images             Image[]
+  name               String
+  cientificName      String
+  otherNames         String[]
+  conservationStatus ConservationStatus
+  description        String
+  biome              Biome              @relation(fields: [biomeId], references: [id])
+  biomeId            Int
+
+  @@map("animals")
+}
+
+model Threat {
+  id          Int        @id @default(autoincrement())
+  svgIcon     String
+  images      Image[]
+  name        String
+  type        ThreatType
+  description String
+
+  @@map("threats")
+}
+
+model Biome {
+  id          Int      @id @default(autoincrement())
+  svgIcon     String
+  images      Image[]
+  name        String
+  description String
+  animals     Animal[]
+
+  @@map("biomes")
+}
+
+enum ConservationStatus {
+  EX
+  EW
+  CR
+  EN
+  VU
+  NT
+  LC
+}
+
+enum ThreatType {
+  ARTIFICAL
+  NATURAL
+}
