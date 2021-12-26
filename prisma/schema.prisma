@@ -14,11 +14,11 @@ model Image {
   id       Int     @id @default(autoincrement())
   data     Bytes
   name     String
-  Animal   Animal? @relation(fields: [animalId], references: [id])
+  animal   Animal? @relation(fields: [animalId], references: [id])
   animalId Int?
-  Threat   Threat? @relation(fields: [threatId], references: [id])
+  threat   Threat? @relation(fields: [threatId], references: [id])
   threatId Int?
-  Biome    Biome?  @relation(fields: [biomeId], references: [id])
+  biome    Biome?  @relation(fields: [biomeId], references: [id])
   biomeId  Int?
 
   @@map("images")
@@ -35,6 +35,7 @@ model Animal {
   description        String
   biome              Biome              @relation(fields: [biomeId], references: [id])
   biomeId            Int
+  threats            Threat[]
 
   @@map("animals")
 }
@@ -46,6 +47,7 @@ model Threat {
   name        String
   type        ThreatType
   description String
+  animals     Animal[]
 
   @@map("threats")
 }
