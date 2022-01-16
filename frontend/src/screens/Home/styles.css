@@ -1,0 +1,48 @@
+#Home {
+  background-image: url("../../assets/background-images/Background.png");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#HomeTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#Home .container {
+  width: 60vw;
+  height: 70vh;
+
+  background: linear-gradient(
+    125.36deg,
+    rgba(255, 255, 255, 0.75) 19.96%,
+    rgba(231, 200, 182, 0.75) 108.3%
+  );
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+
+  border-radius: 10px;
+}
+
+#Home .begin-tour {
+  display: inline-block;
+  width: 15vw;
+  height: 20vh;
+
+  margin-top: -100px;
+
+  z-index: 10;
+
+  background: linear-gradient(108.08deg, #e74c3c 0%, #c0392b 100%);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+}
