@@ -1,5 +1,3 @@
-import React from "react";
-import Icon from "@mdi/react";
 import {
   Animator,
   ScrollContainer,
@@ -12,53 +10,62 @@ import {
   MoveOut,
   Sticky,
   StickyIn,
+  StickyOut,
   ZoomIn,
-} from "react-scroll-motion";
+} from 'react-scroll-motion';
+import animateScrollTo from 'animated-scroll-to';
 
-import ChoiceCard from "../../components/ChoiceCard";
+import ChoiceCard from '../../components/ChoiceCard';
 
-import "aos/dist/aos.css";
-import "./styles.css";
+// import "aos/dist/aos.css";
+import styles from './styles.module.scss';
+// import { mdiMouseMoveDown } from "@mdi/js";
 
-import { mdiMouseMoveDown } from "@mdi/js";
+import logo from '../../assets/icons/RasgadosLogo.svg';
+import scrollDownWhite from '../../assets/icons/ScrollDownWhite.svg';
 
-const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
 const FadeUp = batch(Fade(), Move(), Sticky());
-
-const logo = require("../../assets/icons/RasgadosLogo.svg");
 
 type HomeProps = {};
 
 export default function Home({}: HomeProps) {
+  function scrollTo(el: HTMLElement | null) {
+    console.log(el);
+    if (el) {
+      console.log('👌');
+      animateScrollTo(el, {
+        speed: 1000,
+      }).then(_ => {});
+    }
+  }
+
   return (
-    <div className="home-background">
-      <ScrollContainer>
-        <ScrollPage page={0}>
-          <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -300))}>
-            <div className="flex-center flex-col">
-              <div className="title-box container flex-center flex-col">
-                <img src={logo.default} width={700} />
+    <div className={styles.homeBackground}>
+      <ScrollContainer className={styles.fullWidth}>
+        <ScrollPage page={0} className={styles.fullWidth}>
+          <Animator
+            animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}
+            className={styles.fullWidth}
+          >
+            <div className={styles.landingContainer}>
+              <div className={styles.titleBox}>
+                <img src={logo} alt='logo' />
                 <p>
                   um tour pela fauna em <br /> risco do brasil
                 </p>
               </div>
-              <div className="begin-tour flex-center flex-col">
+              <div className={styles.beginTour} onClick={() => scrollTo(document.getElementById('page-1'))}>
                 <p>iniciar tour</p>
-                <Icon
-                  path={mdiMouseMoveDown}
-                  title="MouseDown"
-                  size={2}
-                  color="white"
-                />
+                <img src={scrollDownWhite} alt='scrollDownWhite' />
               </div>
             </div>
           </Animator>
         </ScrollPage>
         <ScrollPage page={1}>
-          <Animator animation={FadeUp}>
-            <div style={{ display: "flex"}}>
-              <ChoiceCard route="goodside" />
-              <ChoiceCard route="badside" />
+          <Animator animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}>
+            <div style={{ display: 'flex' }} id='page-1'>
+              <ChoiceCard route='goodside' />
+              <ChoiceCard route='badside' />
             </div>
           </Animator>
         </ScrollPage>
