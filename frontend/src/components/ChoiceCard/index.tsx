@@ -4,8 +4,8 @@ import { mdiChevronRight } from '@mdi/js';
 
 import styles from './styles.module.scss';
 
-import amazoniaGood from '../../assets/icons/Amazonia-Good.svg';
-import amazoniaBad from '../../assets/icons/Amazonia-Bad.svg';
+import amazoniaGood from '../../assets/background-images/Amazonia-Good.png';
+import amazoniaBad from '../../assets/background-images/Amazonia-Bad.png';
 
 type ChoiceCardProps = {
   route: string;
