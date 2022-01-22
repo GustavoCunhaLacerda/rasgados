@@ -24,11 +24,12 @@ import styles from './styles.module.scss';
 import logo from '../../assets/icons/RasgadosLogo.svg';
 import scrollDownWhite from '../../assets/icons/ScrollDownWhite.svg';
 
-const FadeUp = batch(Fade(), Move(), Sticky());
+// const FadeOut = batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300));
+const FadeOut = batch(Fade(), MoveIn(0, 100), MoveOut(0, -300));
 
-type HomeProps = {};
+// type HomeProps = {};
 
-export default function Home({}: HomeProps) {
+export default function Home() {
   function scrollTo(el: HTMLElement | null) {
     console.log(el);
     if (el) {
@@ -43,13 +44,11 @@ export default function Home({}: HomeProps) {
     <div className={styles.homeBackground}>
       <ScrollContainer>
         <ScrollPage page={0}>
-          <Animator animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}>
+          <Animator animation={FadeOut}>
             <div className={styles.landingContainer}>
               <div className={styles.titleBox}>
                 <img src={logo} alt='logo' />
-                <p>
-                  um tour pela fauna em <br /> risco do brasil
-                </p>
+                <p>um tour pela fauna em risco do brasil</p>
               </div>
               <div className={styles.beginTour} onClick={() => scrollTo(document.getElementById('page-1'))}>
                 <p>iniciar tour</p>
@@ -59,7 +58,7 @@ export default function Home({}: HomeProps) {
           </Animator>
         </ScrollPage>
         <ScrollPage page={1}>
-          <Animator animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}>
+          <Animator animation={FadeOut}>
             <div className={styles.choicesContainer} id='page-1'>
               <ChoiceCard route='goodside' />
               <ChoiceCard route='badside' />
