@@ -3,12 +3,10 @@
 
   width: 100%;
   max-width: 500px;
-  height: 100%;
-  max-height: 650px;
+  height: 650px;
   border-radius: 10px;
 
   display: flex;
-  // flex: 1;
   flex-direction: column;
 
   img {
@@ -73,7 +71,6 @@
   align-items: center;
 
   text-decoration: none;
-  text-transform: uppercase;
   color: white;
   text-align: center;
 
@@ -83,22 +80,10 @@
   }
 
   &[data-route='badside'] {
-    background: linear-gradient(108.08deg, rgb(112, 108, 54) 0%, rgb(69, 66, 24) 100%);
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), -0.125rem -0.125rem 1rem rgba(112, 108, 54, 0.5),
-        0.125rem 0.125rem 1rem rgba(69, 66, 24, 0.5);
-    }
+    background: linear-gradient(108.08deg, #706c36 0%, #454218 100%);
   }
 
   &[data-route='goodside'] {
-    background: linear-gradient(108.08deg, rgb(75, 110, 56) 0%, rgb(44, 77, 27) 100%);
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), -0.125rem -0.125rem 1rem rgba(75, 110, 56, 0.5),
-        0.125rem 0.125rem 1rem rgba(44, 77, 27, 0.5);
-    }
+    background: linear-gradient(108.08deg, #4b6e38 0%, #2c4d1b 100%);
   }
 }
