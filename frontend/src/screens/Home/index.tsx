@@ -41,12 +41,9 @@ export default function Home({}: HomeProps) {
 
   return (
     <div className={styles.homeBackground}>
-      <ScrollContainer className={styles.fullWidth}>
-        <ScrollPage page={0} className={styles.fullWidth}>
-          <Animator
-            animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}
-            className={styles.fullWidth}
-          >
+      <ScrollContainer>
+        <ScrollPage page={0}>
+          <Animator animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}>
             <div className={styles.landingContainer}>
               <div className={styles.titleBox}>
                 <img src={logo} alt='logo' />
@@ -63,7 +60,7 @@ export default function Home({}: HomeProps) {
         </ScrollPage>
         <ScrollPage page={1}>
           <Animator animation={batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300))}>
-            <div style={{ display: 'flex' }} id='page-1'>
+            <div className={styles.choicesContainer} id='page-1'>
               <ChoiceCard route='goodside' />
               <ChoiceCard route='badside' />
             </div>

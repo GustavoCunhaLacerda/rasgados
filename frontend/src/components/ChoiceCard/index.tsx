@@ -1,36 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Icon } from '@mdi/react';
+import { mdiChevronRight } from '@mdi/js';
 
-import "./styles.css";
+import styles from './styles.module.scss';
 
-const AmazoniaGood = require("../../assets/icons/Amazonia-Good.svg");
-const AmazoniaBad = require("../../assets/icons/Amazonia-Bad.svg");
+import amazoniaGood from '../../assets/icons/Amazonia-Good.svg';
+import amazoniaBad from '../../assets/icons/Amazonia-Bad.svg';
 
 type ChoiceCardProps = {
   route: string;
 };
 
+type Choices = {
+  goodside: any;
+  badside: any;
+};
+
 export default function ChoiceCard({ route }: ChoiceCardProps) {
+  function imageFromRoute(route: keyof Choices) {
+    const choices: Choices = {
+      goodside: amazoniaGood,
+      badside: amazoniaBad,
+    };
+
+    return choices[route];
+  }
+
   return (
-    <div id="ChoiceCard">
-      <div className="card">
-        <div className={`container-img container-img-${route}`}>
-          <img
-            className={"card-img"}
-            // src={
-            //   route === "goodside" ? AmazoniaGood.default : AmazoniaBad.default
-            // }
-          />
+    <div id='ChoiceCard'>
+      <div className={styles.card} data-route={`${route}`}>
+        <div className={styles.containerImage} data-route={`${route}`}>
+          <img src={imageFromRoute(route as keyof Choices)} alt={`${route}`} />
         </div>
         {/*
           // TODO: esse link será um componente
         */}
-        <div className={`container-button`}>
-          <Link
-            to={`/${route}`}
-            className={`nav-button nav-button-${route}`}
-          >
-            INICIAR
+        <div className={styles.containerFooter}>
+          <Link to={`/${route}`} className={styles.footerButton} data-route={`${route}`}>
+            <span>INICIAR</span>
+            <Icon path={mdiChevronRight} size={1.5} color='#fff'></Icon>
           </Link>
         </div>
       </div>
