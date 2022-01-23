@@ -1,7 +1,16 @@
-import React from "react";
+import React from 'react';
 
-type ScrollButtonProps = {};
+import styles from './styles.module.scss';
+import scrollDown from '../../assets/icons/ScrollDownRed.svg';
 
-export default function ScrollButton({}: ScrollButtonProps) {
-  return <div></div>;
+type ScrollButtonProps = {
+  onClick: React.MouseEventHandler<HTMLDivElement> | undefined;
+};
+
+export default function ScrollButton({ onClick }: ScrollButtonProps) {
+  return (
+    <div className={styles.container} onClick={onClick}>
+      <img src={scrollDown} alt='scroll-down-red' />
+    </div>
+  );
 }
