@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
@@ -52,7 +53,6 @@ export default function GoodSide({}: GoodSideProps) {
   };
 
   function changeTitle(biome: string, status: boolean) {
-    console.log(biome, status);
     if (status) {
       setTitleStack(prev => [...prev, biome]);
     } else {
@@ -82,13 +82,28 @@ export default function GoodSide({}: GoodSideProps) {
         {Object.values(biomes).map((biome, i) => (
           <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(biome.title, isVisible)} key={i}>
             <div className={styles.biomeContainer}>
-              <div className={styles.mapContainer}>
-                <img src={biome.image} alt={biome.title} />
-                <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i}`))}></ScrollButton>
-              </div>
-              <div className={styles.fakeCardContainer} id={`card-${i}`}>
-                <div className={styles.fakeCard}></div>
-              </div>
+              <AnimationOnScroll
+                animateIn='animate__fadeIn'
+                animateOut='animate__fadeOut'
+                style={{ width: 'auto' }}
+                // animatePreScroll={false}
+                offset={0}
+              >
+                <div className={styles.mapContainer}>
+                  <img src={biome.image} alt={biome.title} />
+                  <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i}`))}></ScrollButton>
+                </div>
+              </AnimationOnScroll>
+              <AnimationOnScroll
+                animateIn='animate__fadeIn'
+                animateOut='animate__fadeOut'
+                style={{ width: '100%' }}
+                offset={0}
+              >
+                <div className={styles.fakeCardContainer} id={`card-${i}`}>
+                  <div className={styles.fakeCard}></div>
+                </div>
+              </AnimationOnScroll>
             </div>
           </VisibilitySensor>
         ))}
