@@ -7,6 +7,8 @@ p {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  width: 100%;
 }
 
 .landingContainer {
@@ -16,10 +18,13 @@ p {
   flex-direction: column;
 
   height: 100vh;
-  width: 100%;
+  width: calc(100vw - var(--scrollbar));
+  margin-right: var(--scrollbar);
 
   padding-top: 20px;
   padding-bottom: 20px;
+
+  // width: calc(100vw - (100vw - 100%));
 }
 
 .titleBox {
@@ -105,7 +110,8 @@ p {
   align-items: center;
   column-gap: 3%;
   height: 100vh;
-  width: 90%;
-  padding: 1.5% 3%;
+  width: calc(90vw - var(--scrollbar));
+  margin-right: var(--scrollbar);
+  padding: 1.5% 5%;
   overflow: auto;
 }

@@ -24,8 +24,8 @@ import styles from './styles.module.scss';
 import logo from '../../assets/icons/RasgadosLogo.svg';
 import scrollDownWhite from '../../assets/icons/ScrollDownWhite.svg';
 
-// const FadeOut = batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300));
-const FadeOut = batch(Fade(), MoveIn(0, 100), MoveOut(0, -300));
+const FadeOut = batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300));
+// const FadeOut = batch(Fade(), MoveIn(0, 100), MoveOut(0, -300));
 
 // type HomeProps = {};
 
@@ -44,7 +44,7 @@ export default function Home() {
     <div className={styles.homeBackground}>
       <ScrollContainer>
         <ScrollPage page={0}>
-          <Animator animation={FadeOut}>
+          <Animator animation={FadeOut} className={styles.teste}>
             <div className={styles.landingContainer}>
               <div className={styles.titleBox}>
                 <img src={logo} alt='logo' />

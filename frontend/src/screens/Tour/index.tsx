@@ -4,7 +4,20 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
+import VisibilitySensor from 'react-visibility-sensor';
+import animateScrollTo from 'animated-scroll-to';
+
 import styles from './styles.module.scss';
+
+import backgroundAgropecuaria from '../../assets/background-images/Background-Agropecuaria-2.png';
+import backgroundCaca from '../../assets/background-images/Background-Caca-2.png';
+import backgroundDesmatamento from '../../assets/background-images/Background-Desmatamento-2.png';
+import backgroundFerrovia from '../../assets/background-images/Background-Ferrovia-2.png';
+import backgroundHidreletrica from '../../assets/background-images/Background-Hidreletrica-2.png';
+import backgroundLixo from '../../assets/background-images/Background-Lixo-2.png';
+import backgroundQueimada from '../../assets/background-images/Background-Queimada-2.png';
+import backgroundUrbana from '../../assets/background-images/Background-Urbana-2.png';
+import background from '../../assets/background-images/Background-Tour.png';
 
 import backgroundAmazonia from '../../assets/background-images/Background-Amazonia-2.png';
 import backgroundCerrado from '../../assets/background-images/Background-Cerrado-2.png';
@@ -12,19 +25,52 @@ import backgroundCaatinga from '../../assets/background-images/Background-Caatin
 import backgroundMataAtlantica from '../../assets/background-images/Background-MataAtlantica-2.png';
 import backgroundPampa from '../../assets/background-images/Background-Pampa-2.png';
 import backgroundPantanal from '../../assets/background-images/Background-Pantanal-2.png';
-import background from '../../assets/background-images/Background-Tour.png';
-import VisibilitySensor from 'react-visibility-sensor';
-import animateScrollTo from 'animated-scroll-to';
 
-type GoodSideProps = {};
+type TourProps = {
+  type: 'good' | 'bad';
+};
 
-export default function GoodSide({}: GoodSideProps) {
+export default function Tour({ type }: TourProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const [titleStack, setTitleStack] = useState<string[]>([]);
 
+  const threats = {
+    agropecuaria: {
+      title: 'Agropecuária',
+      image: backgroundAgropecuaria,
+    },
+    caca: {
+      title: 'Caça',
+      image: backgroundCaca,
+    },
+    desmatamento: {
+      title: 'Desmatamento',
+      image: backgroundDesmatamento,
+    },
+    ferrovia: {
+      title: 'Ferrovia',
+      image: backgroundFerrovia,
+    },
+    hidreletrica: {
+      title: 'Hidrelétrica',
+      image: backgroundHidreletrica,
+    },
+    lixo: {
+      title: 'Lixo',
+      image: backgroundLixo,
+    },
+    queimada: {
+      title: 'Queimada',
+      image: backgroundQueimada,
+    },
+    urbana: {
+      title: 'Urbana',
+      image: backgroundUrbana,
+    },
+  };
   const biomes = {
     amazonia: {
       title: 'Amazônia',
@@ -79,9 +125,9 @@ export default function GoodSide({}: GoodSideProps) {
     <div className={styles.container}>
       <Header title={getTitle()}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-        {Object.values(biomes).map((biome, i) => (
-          <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(biome.title, isVisible)} key={i}>
-            <div className={styles.biomeContainer}>
+        {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
+          <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.title, isVisible)} key={i}>
+            <div className={styles.pageContainer}>
               <AnimationOnScroll
                 animateIn='animate__fadeIn'
                 animateOut='animate__fadeOut'
@@ -90,7 +136,7 @@ export default function GoodSide({}: GoodSideProps) {
                 offset={0}
               >
                 <div className={styles.mapContainer}>
-                  <img src={biome.image} alt={biome.title} />
+                  <img src={data.image} alt={data.title} />
                   <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i}`))}></ScrollButton>
                 </div>
               </AnimationOnScroll>
