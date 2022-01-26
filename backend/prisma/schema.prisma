@@ -11,25 +11,27 @@ datasource db {
 }
 
 model Image {
-  id       Int     @id @default(autoincrement())
-  data     Bytes
-  name     String
-  animal   Animal? @relation(fields: [animalId], references: [id])
-  animalId Int?
-  threat   Threat? @relation(fields: [threatId], references: [id])
-  threatId Int?
-  biome    Biome?  @relation(fields: [biomeId], references: [id])
-  biomeId  Int?
+  id            Int     @id @default(autoincrement())
+  data          String
+  name          String
+  animal        Animal? @relation(fields: [animalId], references: [id])
+  animalId      Int?
+  threatImage   Threat? @relation(name: "ThreatImages", fields: [threatImageId], references: [id])
+  threatImageId Int?
+  threatMap     Threat? @relation(name: "ThreatMap")
+  biomeImage    Biome?  @relation(name: "BiomeImages", fields: [biomeImageId], references: [id])
+  biomeImageId  Int?
+  biomeMap      Biome?  @relation(name: "BiomeMap")
 
   @@map("images")
 }
 
 model Animal {
   id                 Int                @id @default(autoincrement())
-  svgIcon            String
+  icon               String
   images             Image[]
   name               String
-  cientificName      String
+  cientificName      String             @unique
   otherNames         String[]
   conservationStatus ConservationStatus
   description        String
@@ -42,9 +44,10 @@ model Animal {
 
 model Threat {
   id          Int        @id @default(autoincrement())
-  svgIcon     String
-  images      Image[]
-  name        String
+  map         Image      @relation("ThreatMap", fields: [mapId], references: [id])
+  mapId       Int        @unique
+  images      Image[]    @relation("ThreatImages")
+  name        String     @unique
   type        ThreatType
   description String
   animals     Animal[]
@@ -54,9 +57,10 @@ model Threat {
 
 model Biome {
   id          Int      @id @default(autoincrement())
-  svgIcon     String
-  images      Image[]
-  name        String
+  map         Image    @relation("BiomeMap", fields: [mapId], references: [id])
+  mapId       Int      @unique
+  images      Image[]  @relation("BiomeImages")
+  name        String   @unique
   description String
   animals     Animal[]
 

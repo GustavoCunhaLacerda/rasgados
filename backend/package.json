@@ -9,8 +9,12 @@
     "start": "ts-node src/server.ts",
     "dev": "ts-node-dev --transpile-only --respawn --exit-child src/server.ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/glob": "^7.2.0",
     "@types/node": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
@@ -21,7 +25,10 @@
   },
   "dependencies": {
     "@prisma/client": "3.6.0",
+    "@types/image-to-base64": "^2.1.0",
     "express": "^4.17.1",
+    "glob": "^7.2.0",
+    "image-to-base64": "^2.2.0",
     "ts-node": "^10.4.0"
   }
 }
