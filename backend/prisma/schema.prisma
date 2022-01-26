@@ -12,7 +12,7 @@ datasource db {
 
 model Image {
   id            Int     @id @default(autoincrement())
-  data          String
+  path          String
   name          String
   animal        Animal? @relation(fields: [animalId], references: [id])
   animalId      Int?

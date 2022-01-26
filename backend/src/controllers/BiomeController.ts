@@ -5,7 +5,15 @@ const prisma = new PrismaClient();
 
 export class BiomeController {
   async findAll(request: Request, response: Response) {
-    const biomes = await prisma.biome.findMany();
+    const biomes = await prisma.biome.findMany({
+      include: {
+        map: true,
+        images: true,
+      },
+      orderBy: {
+        id: 'asc',
+      },
+    });
 
     return response.json(biomes);
   }
@@ -18,7 +26,9 @@ export class BiomeController {
         id: Number(id),
       },
       include: {
+        map: true,
         images: true,
+        animals: true,
       },
     });
 
