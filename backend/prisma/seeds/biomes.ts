@@ -10,10 +10,10 @@ function getBiomesImages() {
     const files = glob.sync(`images/biomes/${biome}/*`, {
       cwd: 'public',
     });
-    const mapImage = files.find(file => path.basename(file).includes('map')) ?? null;
+    const map = files.find(file => path.basename(file).includes('map')) ?? null;
     const images = files.filter(file => !path.basename(file).includes('map'));
 
-    return [biome, { mapImage, images }];
+    return [biome, { map, images }];
   });
 
   return Object.fromEntries(biomesImagesArr);
@@ -29,7 +29,7 @@ function buildPrismaImage(imgPath: string) {
 export async function biomes() {
   const biomesImages = getBiomesImages();
 
-  const amazoniaMapImage = buildPrismaImage(biomesImages['amazonia']['mapImage']);
+  const amazoniaMapImage = buildPrismaImage(biomesImages['amazonia']['map']);
   const amazoniaImages = biomesImages['amazonia']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
   const amazonia = await prisma.biome.upsert({
     where: { name: 'Amazônia' },
@@ -49,7 +49,7 @@ export async function biomes() {
     },
   });
 
-  const caatingaMapImage = buildPrismaImage(biomesImages['caatinga']['mapImage']);
+  const caatingaMapImage = buildPrismaImage(biomesImages['caatinga']['map']);
   const caatingaImages = biomesImages['caatinga']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
   const caatinga = await prisma.biome.upsert({
     where: { name: 'Caatinga' },
@@ -69,7 +69,7 @@ export async function biomes() {
     },
   });
 
-  const cerradoMapImage = buildPrismaImage(biomesImages['cerrado']['mapImage']);
+  const cerradoMapImage = buildPrismaImage(biomesImages['cerrado']['map']);
   const cerradoImages = biomesImages['cerrado']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
   const cerrado = await prisma.biome.upsert({
     where: { name: 'Cerrado' },
@@ -89,7 +89,7 @@ export async function biomes() {
     },
   });
 
-  const mataAtlanticaMapImage = buildPrismaImage(biomesImages['mata_atlantica']['mapImage']);
+  const mataAtlanticaMapImage = buildPrismaImage(biomesImages['mata_atlantica']['map']);
   const mataAtlanticaImages = biomesImages['mata_atlantica']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
@@ -111,7 +111,7 @@ export async function biomes() {
     },
   });
 
-  const pampaMapImage = buildPrismaImage(biomesImages['pampa']['mapImage']);
+  const pampaMapImage = buildPrismaImage(biomesImages['pampa']['map']);
   const pampaImages = biomesImages['pampa']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
   const pampa = await prisma.biome.upsert({
     where: { name: 'Pampa' },
@@ -131,7 +131,7 @@ export async function biomes() {
     },
   });
 
-  const pantanalMapImage = buildPrismaImage(biomesImages['pantanal']['mapImage']);
+  const pantanalMapImage = buildPrismaImage(biomesImages['pantanal']['map']);
   const pantanalImages = biomesImages['pantanal']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
   const pantanal = await prisma.biome.upsert({
     where: { name: 'Pantanal' },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { api } from '../../services/api';
 
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
@@ -9,94 +10,49 @@ import animateScrollTo from 'animated-scroll-to';
 
 import styles from './styles.module.scss';
 
-import backgroundAgropecuaria from '../../assets/background-images/Background-Agropecuaria-2.png';
-import backgroundCaca from '../../assets/background-images/Background-Caca-2.png';
-import backgroundDesmatamento from '../../assets/background-images/Background-Desmatamento-2.png';
-import backgroundFerrovia from '../../assets/background-images/Background-Ferrovia-2.png';
-import backgroundHidreletrica from '../../assets/background-images/Background-Hidreletrica-2.png';
-import backgroundLixo from '../../assets/background-images/Background-Lixo-2.png';
-import backgroundQueimada from '../../assets/background-images/Background-Queimada-2.png';
-import backgroundUrbana from '../../assets/background-images/Background-Urbana-2.png';
 import background from '../../assets/background-images/Background-Tour.png';
 
-import backgroundAmazonia from '../../assets/background-images/Background-Amazonia-2.png';
-import backgroundCerrado from '../../assets/background-images/Background-Cerrado-2.png';
-import backgroundCaatinga from '../../assets/background-images/Background-Caatinga-2.png';
-import backgroundMataAtlantica from '../../assets/background-images/Background-MataAtlantica-2.png';
-import backgroundPampa from '../../assets/background-images/Background-Pampa-2.png';
-import backgroundPantanal from '../../assets/background-images/Background-Pantanal-2.png';
+type Image = {
+  id: number;
+  path: string;
+  name: string;
+};
+
+type Biome = {
+  id: number;
+  name: string;
+  description: string;
+  map: Image;
+  images: Image[];
+};
+type Threat = Biome;
 
 type TourProps = {
   type: 'good' | 'bad';
 };
 
 export default function Tour({ type }: TourProps) {
+  const [biomes, setBiomes] = useState<Biome[]>([]);
+  const [threats, setThreats] = useState<Threat[]>([]);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    switch (type) {
+      case 'good':
+        api.get('biomes/all').then(response => {
+          setBiomes(response.data);
+        });
+        break;
+      case 'bad':
+        api.get('threats/all').then(response => {
+          setThreats(response.data);
+        });
+        break;
+      default:
+        break;
+    }
+  }, [type]);
 
   const [titleStack, setTitleStack] = useState<string[]>([]);
-
-  const threats = {
-    agropecuaria: {
-      title: 'Agropecuária',
-      image: backgroundAgropecuaria,
-    },
-    caca: {
-      title: 'Caça',
-      image: backgroundCaca,
-    },
-    desmatamento: {
-      title: 'Desmatamento',
-      image: backgroundDesmatamento,
-    },
-    ferrovia: {
-      title: 'Ferrovia',
-      image: backgroundFerrovia,
-    },
-    hidreletrica: {
-      title: 'Hidrelétrica',
-      image: backgroundHidreletrica,
-    },
-    lixo: {
-      title: 'Lixo',
-      image: backgroundLixo,
-    },
-    queimada: {
-      title: 'Queimada',
-      image: backgroundQueimada,
-    },
-    urbana: {
-      title: 'Urbana',
-      image: backgroundUrbana,
-    },
-  };
-  const biomes = {
-    amazonia: {
-      title: 'Amazônia',
-      image: backgroundAmazonia,
-    },
-    cerrado: {
-      title: 'Cerrado',
-      image: backgroundCerrado,
-    },
-    caatinga: {
-      title: 'Caatinga',
-      image: backgroundCaatinga,
-    },
-    mataAtlantica: {
-      title: 'Mata Atlântica',
-      image: backgroundMataAtlantica,
-    },
-    pampa: {
-      title: 'Pampa',
-      image: backgroundPampa,
-    },
-    pantanal: {
-      title: 'Pantanal',
-      image: backgroundPantanal,
-    },
-  };
 
   function changeTitle(biome: string, status: boolean) {
     if (status) {
@@ -126,7 +82,7 @@ export default function Tour({ type }: TourProps) {
       <Header title={getTitle()}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
         {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
-          <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.title, isVisible)} key={i}>
+          <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.name, isVisible)} key={i}>
             <div className={styles.pageContainer}>
               <AnimationOnScroll
                 animateIn='animate__fadeIn'
@@ -136,7 +92,7 @@ export default function Tour({ type }: TourProps) {
                 offset={0}
               >
                 <div className={styles.mapContainer}>
-                  <img src={data.image} alt={data.title} />
+                  <img src={`${process.env.REACT_APP_API_URL}/${data.map.path}`} alt={data.map.name} />
                   <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i}`))}></ScrollButton>
                 </div>
               </AnimationOnScroll>

@@ -43,12 +43,11 @@ model Animal {
 }
 
 model Threat {
-  id          Int        @id @default(autoincrement())
-  map         Image      @relation("ThreatMap", fields: [mapId], references: [id])
-  mapId       Int        @unique
-  images      Image[]    @relation("ThreatImages")
-  name        String     @unique
-  type        ThreatType
+  id          Int      @id @default(autoincrement())
+  map         Image    @relation("ThreatMap", fields: [mapId], references: [id])
+  mapId       Int      @unique
+  images      Image[]  @relation("ThreatImages")
+  name        String   @unique
   description String
   animals     Animal[]
 
@@ -75,9 +74,4 @@ enum ConservationStatus {
   VU
   NT
   LC
-}
-
-enum ThreatType {
-  ARTIFICAL
-  NATURAL
 }

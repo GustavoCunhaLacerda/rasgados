@@ -5,7 +5,15 @@ const prisma = new PrismaClient();
 
 export class ThreatController {
   async findAll(request: Request, response: Response) {
-    const threats = await prisma.threat.findMany();
+    const threats = await prisma.threat.findMany({
+      include: {
+        map: true,
+        images: true,
+      },
+      orderBy: {
+        id: 'asc',
+      },
+    });
 
     return response.json(threats);
   }
