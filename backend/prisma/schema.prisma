@@ -14,8 +14,9 @@ model Image {
   id            Int     @id @default(autoincrement())
   path          String
   name          String
-  animal        Animal? @relation(fields: [animalId], references: [id])
-  animalId      Int?
+  animalIcon    Animal? @relation("AnimalIcon")
+  animalImage   Animal? @relation("AnimalImages", fields: [animalImageId], references: [id])
+  animalImageId Int?
   threatImage   Threat? @relation(name: "ThreatImages", fields: [threatImageId], references: [id])
   threatImageId Int?
   threatMap     Threat? @relation(name: "ThreatMap")
@@ -28,8 +29,9 @@ model Image {
 
 model Animal {
   id                 Int                @id @default(autoincrement())
-  icon               String
-  images             Image[]
+  icon               Image              @relation("AnimalIcon", fields: [iconId], references: [id])
+  iconId             Int                @unique
+  images             Image[]            @relation("AnimalImages")
   name               String
   cientificName      String             @unique
   otherNames         String[]

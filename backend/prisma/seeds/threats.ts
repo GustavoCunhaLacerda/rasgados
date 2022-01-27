@@ -1,6 +1,7 @@
 import path from 'path';
 import glob from 'glob';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
+import { buildPrismaImage } from '../seed';
 const prisma = new PrismaClient();
 
 function getThreatsImages() {
@@ -28,13 +29,6 @@ function getThreatsImages() {
   return Object.fromEntries(threatsImagesArr);
 }
 
-function buildPrismaImage(imgPath: string) {
-  return {
-    name: path.basename(imgPath),
-    path: imgPath,
-  };
-}
-
 export async function threats() {
   const threatsImages = getThreatsImages();
   console.log(threatsImages);
@@ -43,162 +37,170 @@ export async function threats() {
   const agropecuariaImages = threatsImages['agropecuaria']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
-  const agropecuaria = await prisma.threat.upsert({
-    where: { name: 'Agropecuária' },
-    update: {},
-    create: {
-      name: 'Agropecuária',
-      description: '',
-      map: {
-        create: agropecuariaMapImage,
-      },
-      images: {
-        createMany: {
-          data: agropecuariaImages,
-        },
+  const agropecuariaData: Prisma.ThreatCreateInput = {
+    name: 'Agropecuária',
+    description: '',
+    map: {
+      create: agropecuariaMapImage,
+    },
+    images: {
+      createMany: {
+        data: agropecuariaImages,
       },
     },
+  };
+  const agropecuaria = await prisma.threat.upsert({
+    where: { name: 'Agropecuária' },
+    update: agropecuariaData,
+    create: agropecuariaData,
   });
 
   const cacaMapImage = buildPrismaImage(threatsImages['caca']['map']);
   const cacaImages = threatsImages['caca']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
-  const caca = await prisma.threat.upsert({
-    where: { name: 'Caça' },
-    update: {},
-    create: {
-      name: 'Caça',
-      description: '',
-      map: {
-        create: cacaMapImage,
-      },
-      images: {
-        createMany: {
-          data: cacaImages,
-        },
+  const cacaData: Prisma.ThreatCreateInput = {
+    name: 'Caça',
+    description: '',
+    map: {
+      create: cacaMapImage,
+    },
+    images: {
+      createMany: {
+        data: cacaImages,
       },
     },
+  };
+  const caca = await prisma.threat.upsert({
+    where: { name: 'Caça' },
+    update: cacaData,
+    create: cacaData,
   });
 
   const desmatamentoMapImage = buildPrismaImage(threatsImages['desmatamento']['map']);
   const desmatamentoImages = threatsImages['desmatamento']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
-  const desmatamento = await prisma.threat.upsert({
-    where: { name: 'Desmatamento' },
-    update: {},
-    create: {
-      name: 'Desmatamento',
-      description: '',
-      map: {
-        create: desmatamentoMapImage,
-      },
-      images: {
-        createMany: {
-          data: desmatamentoImages,
-        },
+  const desmatamentoData: Prisma.ThreatCreateInput = {
+    name: 'Desmatamento',
+    description: '',
+    map: {
+      create: desmatamentoMapImage,
+    },
+    images: {
+      createMany: {
+        data: desmatamentoImages,
       },
     },
+  };
+  const desmatamento = await prisma.threat.upsert({
+    where: { name: 'Desmatamento' },
+    update: desmatamentoData,
+    create: desmatamentoData,
   });
 
   const expansaoUrbanaMapImage = buildPrismaImage(threatsImages['expansao_urbana']['map']);
   const expansaoUrbanaImages = threatsImages['expansao_urbana']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
-  const expansaoUrbana = await prisma.threat.upsert({
-    where: { name: 'Expansão Urbana' },
-    update: {},
-    create: {
-      name: 'Expansão Urbana',
-      description: '',
-      map: {
-        create: expansaoUrbanaMapImage,
-      },
-      images: {
-        createMany: {
-          data: expansaoUrbanaImages,
-        },
+  const expansaoUrbanaData: Prisma.ThreatCreateInput = {
+    name: 'Expansão Urbana',
+    description: '',
+    map: {
+      create: expansaoUrbanaMapImage,
+    },
+    images: {
+      createMany: {
+        data: expansaoUrbanaImages,
       },
     },
+  };
+  const expansaoUrbana = await prisma.threat.upsert({
+    where: { name: 'Expansão Urbana' },
+    update: expansaoUrbanaData,
+    create: expansaoUrbanaData,
   });
 
   const ferroviasRodoviasMapImage = buildPrismaImage(threatsImages['ferrovias_rodovias']['map']);
   const ferroviasRodoviasImages = threatsImages['ferrovias_rodovias']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
-  const ferroviasRodovias = await prisma.threat.upsert({
-    where: { name: 'Ferrovias e Rodovias' },
-    update: {},
-    create: {
-      name: 'Ferrovias e Rodovias',
-      description: '',
-      map: {
-        create: ferroviasRodoviasMapImage,
-      },
-      images: {
-        createMany: {
-          data: ferroviasRodoviasImages,
-        },
+  const ferroviasRodoviasData: Prisma.ThreatCreateInput = {
+    name: 'Ferrovias e Rodovias',
+    description: '',
+    map: {
+      create: ferroviasRodoviasMapImage,
+    },
+    images: {
+      createMany: {
+        data: ferroviasRodoviasImages,
       },
     },
+  };
+  const ferroviasRodovias = await prisma.threat.upsert({
+    where: { name: 'Ferrovias e Rodovias' },
+    update: ferroviasRodoviasData,
+    create: ferroviasRodoviasData,
   });
 
   const hidreletricaMapImage = buildPrismaImage(threatsImages['hidreletrica']['map']);
   const hidreletricaImages = threatsImages['hidreletrica']['images'].map((imgPath: string) =>
     buildPrismaImage(imgPath)
   );
-  const hidreletrica = await prisma.threat.upsert({
-    where: { name: 'Hidrelétricas' },
-    update: {},
-    create: {
-      name: 'Hidrelétricas',
-      description: '',
-      map: {
-        create: hidreletricaMapImage,
-      },
-      images: {
-        createMany: {
-          data: hidreletricaImages,
-        },
+  const hidreletricaData: Prisma.ThreatCreateInput = {
+    name: 'Hidrelétricas',
+    description: '',
+    map: {
+      create: hidreletricaMapImage,
+    },
+    images: {
+      createMany: {
+        data: hidreletricaImages,
       },
     },
+  };
+  const hidreletrica = await prisma.threat.upsert({
+    where: { name: 'Hidrelétricas' },
+    update: hidreletricaData,
+    create: hidreletricaData,
   });
 
   const lixoMapImage = buildPrismaImage(threatsImages['lixo']['map']);
   const lixoImages = threatsImages['lixo']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
-  const lixo = await prisma.threat.upsert({
-    where: { name: 'Lixo' },
-    update: {},
-    create: {
-      name: 'Lixo',
-      description: '',
-      map: {
-        create: lixoMapImage,
-      },
-      images: {
-        createMany: {
-          data: lixoImages,
-        },
+  const lixoData: Prisma.ThreatCreateInput = {
+    name: 'Lixo',
+    description: '',
+    map: {
+      create: lixoMapImage,
+    },
+    images: {
+      createMany: {
+        data: lixoImages,
       },
     },
+  };
+  const lixo = await prisma.threat.upsert({
+    where: { name: 'Lixo' },
+    update: lixoData,
+    create: lixoData,
   });
 
   const queimadaMapImage = buildPrismaImage(threatsImages['queimada']['map']);
   const queimadaImages = threatsImages['queimada']['images'].map((imgPath: string) => buildPrismaImage(imgPath));
-  const queimada = await prisma.threat.upsert({
-    where: { name: 'Queimada' },
-    update: {},
-    create: {
-      name: 'Queimada',
-      description: '',
-      map: {
-        create: queimadaMapImage,
-      },
-      images: {
-        createMany: {
-          data: queimadaImages,
-        },
+  const queimadaData: Prisma.ThreatCreateInput = {
+    name: 'Queimada',
+    description: '',
+    map: {
+      create: queimadaMapImage,
+    },
+    images: {
+      createMany: {
+        data: queimadaImages,
       },
     },
+  };
+  const queimada = await prisma.threat.upsert({
+    where: { name: 'Queimada' },
+    update: queimadaData,
+    create: queimadaData,
   });
 
   console.log({ agropecuaria, caca, desmatamento, expansaoUrbana, ferroviasRodovias, hidreletrica, lixo, queimada });
