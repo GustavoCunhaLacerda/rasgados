@@ -101,22 +101,22 @@ export async function pampa() {
     create: gatoDosPampasData,
   });
 
-  const largatixaDasDunasIcon = buildPrismaImage(animals['lagartixa_das_dunas']['icon']);
-  const largatixaDasDunasImages = animals['lagartixa_das_dunas']['images'].map((image: string) =>
+  const lagartixaDasDunasIcon = buildPrismaImage(animals['lagartixa_das_dunas']['icon']);
+  const lagartixaDasDunasImages = animals['lagartixa_das_dunas']['images'].map((image: string) =>
     buildPrismaImage(image)
   );
-  const largatixaDasDunasData: Prisma.AnimalCreateInput = {
+  const lagartixaDasDunasData: Prisma.AnimalCreateInput = {
     name: 'Lagartixa-das-dunas',
     cientificName: 'Liolaemus occipitalis',
     otherNames: [],
     conservationStatus: 'VU',
     description: '',
     icon: {
-      create: largatixaDasDunasIcon,
+      create: lagartixaDasDunasIcon,
     },
     images: {
       createMany: {
-        data: largatixaDasDunasImages,
+        data: lagartixaDasDunasImages,
       },
     },
     biome: {
@@ -128,10 +128,10 @@ export async function pampa() {
       connect: [{ name: 'Expansão Urbana' }],
     },
   };
-  const largatixaDasDunas = await prisma.animal.upsert({
+  const lagartixaDasDunas = await prisma.animal.upsert({
     where: { cientificName: 'Liolaemus occipitalis' },
-    update: largatixaDasDunasData,
-    create: largatixaDasDunasData,
+    update: lagartixaDasDunasData,
+    create: lagartixaDasDunasData,
   });
 
   const papagaioCharaoIcon = buildPrismaImage(animals['papagaio_charao']['icon']);
@@ -165,5 +165,5 @@ export async function pampa() {
     create: papagaioCharaoData,
   });
 
-  console.log({ cardealAmarelo, cobraEspadaDosPampas, gatoDosPampas, papagaioCharao });
+  console.log({ cardealAmarelo, cobraEspadaDosPampas, gatoDosPampas, lagartixaDasDunas, papagaioCharao });
 }
