@@ -14,14 +14,6 @@ export async function pantanal() {
     otherNames: ['Lontra gigante', "onça-d'água"],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: ariranhaIcon,
-    },
-    images: {
-      createMany: {
-        data: ariranhaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pantanal',
@@ -34,7 +26,17 @@ export async function pantanal() {
   const ariranha = await prisma.animal.upsert({
     where: { cientificName: 'Pteronura brasiliensis' },
     update: ariranhaData,
-    create: ariranhaData,
+    create: {
+      ...ariranhaData,
+      icon: {
+        create: ariranhaIcon,
+      },
+      images: {
+        createMany: {
+          data: ariranhaImages,
+        },
+      },
+    },
   });
 
   const catitaIcon = buildPrismaImage(animals['catita']['icon']);
@@ -45,14 +47,6 @@ export async function pantanal() {
     otherNames: [],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: catitaIcon,
-    },
-    images: {
-      createMany: {
-        data: catitaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pantanal',
@@ -65,7 +59,17 @@ export async function pantanal() {
   const catita = await prisma.animal.upsert({
     where: { cientificName: 'Thylamys macrurus' },
     update: catitaData,
-    create: catitaData,
+    create: {
+      ...catitaData,
+      icon: {
+        create: catitaIcon,
+      },
+      images: {
+        createMany: {
+          data: catitaImages,
+        },
+      },
+    },
   });
 
   const cervoDoPantanalIcon = buildPrismaImage(animals['cervo_do_pantanal']['icon']);
@@ -76,14 +80,6 @@ export async function pantanal() {
     otherNames: ['Guaçu-puçu', 'Duaçuapara'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: cervoDoPantanalIcon,
-    },
-    images: {
-      createMany: {
-        data: cervoDoPantanalImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pantanal',
@@ -96,7 +92,17 @@ export async function pantanal() {
   const cervoDoPantanal = await prisma.animal.upsert({
     where: { cientificName: 'Blastocerus dichotomus' },
     update: cervoDoPantanalData,
-    create: cervoDoPantanalData,
+    create: {
+      ...cervoDoPantanalData,
+      icon: {
+        create: cervoDoPantanalIcon,
+      },
+      images: {
+        createMany: {
+          data: cervoDoPantanalImages,
+        },
+      },
+    },
   });
 
   const tamanduaBandeiraIcon = buildPrismaImage(animals['tamandua_bandeira']['icon']);
@@ -107,14 +113,6 @@ export async function pantanal() {
     otherNames: ['Papa-formigas', 'Tamanduá-açú', 'Jurumi', 'Jurumim', 'Bandeira', 'Bandurra'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: tamanduaBandeiraIcon,
-    },
-    images: {
-      createMany: {
-        data: tamanduaBandeiraImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pantanal',
@@ -132,7 +130,17 @@ export async function pantanal() {
   const tamanduaBandeira = await prisma.animal.upsert({
     where: { cientificName: 'Myrmecophaga tridactyla' },
     update: tamanduaBandeiraData,
-    create: tamanduaBandeiraData,
+    create: {
+      ...tamanduaBandeiraData,
+      icon: {
+        create: tamanduaBandeiraIcon,
+      },
+      images: {
+        createMany: {
+          data: tamanduaBandeiraImages,
+        },
+      },
+    },
   });
 
   const tiribaDoParanaIcon = buildPrismaImage(animals['tiriba_de_pfrimer']['icon']);
@@ -143,14 +151,6 @@ export async function pantanal() {
     otherNames: ['Tiriba-do-pfrimer'],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: tiribaDoParanaIcon,
-    },
-    images: {
-      createMany: {
-        data: tiribaDoParanaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pantanal',
@@ -163,7 +163,17 @@ export async function pantanal() {
   const tiribaDoParana = await prisma.animal.upsert({
     where: { cientificName: 'Pyrrhura pfrimeri' },
     update: tiribaDoParanaData,
-    create: tiribaDoParanaData,
+    create: {
+      ...tiribaDoParanaData,
+      icon: {
+        create: tiribaDoParanaIcon,
+      },
+      images: {
+        createMany: {
+          data: tiribaDoParanaImages,
+        },
+      },
+    },
   });
 
   console.log({ ariranha, catita, cervoDoPantanal, tamanduaBandeira, tiribaDoParana });

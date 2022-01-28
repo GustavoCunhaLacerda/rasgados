@@ -19,12 +19,12 @@
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.4.1",
-    "prisma": "3.6.0",
+    "prisma": "^3.8.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@prisma/client": "3.6.0",
+    "@prisma/client": "^3.8.1",
     "@types/cors": "^2.8.12",
     "@types/image-to-base64": "^2.1.0",
     "cors": "^2.8.5",

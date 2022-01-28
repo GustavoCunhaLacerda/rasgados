@@ -26,7 +26,9 @@ export class ThreatController {
         id: Number(id),
       },
       include: {
+        map: true,
         images: true,
+        animals: true,
       },
     });
 

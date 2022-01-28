@@ -14,14 +14,6 @@ export async function pampa() {
     otherNames: [],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: cardealAmareloIcon,
-    },
-    images: {
-      createMany: {
-        data: cardealAmareloImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pampa',
@@ -34,7 +26,17 @@ export async function pampa() {
   const cardealAmarelo = await prisma.animal.upsert({
     where: { cientificName: 'Gubernatrix cristata' },
     update: cardealAmareloData,
-    create: cardealAmareloData,
+    create: {
+      ...cardealAmareloData,
+      icon: {
+        create: cardealAmareloIcon,
+      },
+      images: {
+        createMany: {
+          data: cardealAmareloImages,
+        },
+      },
+    },
   });
 
   const cobraEspadaDosPampasIcon = buildPrismaImage(animals['cobra_espada_dos_pampas']['icon']);
@@ -47,14 +49,6 @@ export async function pampa() {
     otherNames: [],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: cobraEspadaDosPampasIcon,
-    },
-    images: {
-      createMany: {
-        data: cobraEspadaDosPampasImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pampa',
@@ -67,7 +61,17 @@ export async function pampa() {
   const cobraEspadaDosPampas = await prisma.animal.upsert({
     where: { cientificName: 'Calamodontophis paucidens' },
     update: cobraEspadaDosPampasData,
-    create: cobraEspadaDosPampasData,
+    create: {
+      ...cobraEspadaDosPampasData,
+      icon: {
+        create: cobraEspadaDosPampasIcon,
+      },
+      images: {
+        createMany: {
+          data: cobraEspadaDosPampasImages,
+        },
+      },
+    },
   });
 
   const gatoDosPampasIcon = buildPrismaImage(animals['gato_dos_pampas']['icon']);
@@ -78,14 +82,6 @@ export async function pampa() {
     otherNames: ['gato-palheiro'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: gatoDosPampasIcon,
-    },
-    images: {
-      createMany: {
-        data: gatoDosPampasImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pampa',
@@ -98,7 +94,17 @@ export async function pampa() {
   const gatoDosPampas = await prisma.animal.upsert({
     where: { cientificName: 'Leopardus pajeros' },
     update: gatoDosPampasData,
-    create: gatoDosPampasData,
+    create: {
+      ...gatoDosPampasData,
+      icon: {
+        create: gatoDosPampasIcon,
+      },
+      images: {
+        createMany: {
+          data: gatoDosPampasImages,
+        },
+      },
+    },
   });
 
   const lagartixaDasDunasIcon = buildPrismaImage(animals['lagartixa_das_dunas']['icon']);
@@ -111,14 +117,6 @@ export async function pampa() {
     otherNames: [],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: lagartixaDasDunasIcon,
-    },
-    images: {
-      createMany: {
-        data: lagartixaDasDunasImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pampa',
@@ -131,7 +129,17 @@ export async function pampa() {
   const lagartixaDasDunas = await prisma.animal.upsert({
     where: { cientificName: 'Liolaemus occipitalis' },
     update: lagartixaDasDunasData,
-    create: lagartixaDasDunasData,
+    create: {
+      ...lagartixaDasDunasData,
+      icon: {
+        create: lagartixaDasDunasIcon,
+      },
+      images: {
+        createMany: {
+          data: lagartixaDasDunasImages,
+        },
+      },
+    },
   });
 
   const papagaioCharaoIcon = buildPrismaImage(animals['papagaio_charao']['icon']);
@@ -142,14 +150,6 @@ export async function pampa() {
     otherNames: ['Papagaio-da-serra', 'Charão'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: papagaioCharaoIcon,
-    },
-    images: {
-      createMany: {
-        data: papagaioCharaoImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Pampa',
@@ -162,7 +162,17 @@ export async function pampa() {
   const papagaioCharao = await prisma.animal.upsert({
     where: { cientificName: 'Amazona pretrei' },
     update: papagaioCharaoData,
-    create: papagaioCharaoData,
+    create: {
+      ...papagaioCharaoData,
+      icon: {
+        create: papagaioCharaoIcon,
+      },
+      images: {
+        createMany: {
+          data: papagaioCharaoImages,
+        },
+      },
+    },
   });
 
   console.log({ cardealAmarelo, cobraEspadaDosPampas, gatoDosPampas, lagartixaDasDunas, papagaioCharao });

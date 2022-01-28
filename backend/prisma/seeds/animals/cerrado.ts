@@ -14,14 +14,6 @@ export async function cerrado() {
     otherNames: ['Anta-brasileira', 'Tapir'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: antaIcon,
-    },
-    images: {
-      createMany: {
-        data: antaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Cerrado',
@@ -34,7 +26,17 @@ export async function cerrado() {
   const anta = await prisma.animal.upsert({
     where: { cientificName: 'Tapirus terrestris' },
     update: antaData,
-    create: antaData,
+    create: {
+      ...antaData,
+      icon: {
+        create: antaIcon,
+      },
+      images: {
+        createMany: {
+          data: antaImages,
+        },
+      },
+    },
   });
 
   const cachorroVinagreIcon = buildPrismaImage(animals['cachorro_vinagre']['icon']);
@@ -45,14 +47,6 @@ export async function cerrado() {
     otherNames: ['Aracambé', 'Jaguacininga', 'Jaguaracambé', 'Janauíra', 'Januaíra'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: cachorroVinagreIcon,
-    },
-    images: {
-      createMany: {
-        data: cachorroVinagreImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Cerrado',
@@ -65,7 +59,17 @@ export async function cerrado() {
   const cachorroVinagre = await prisma.animal.upsert({
     where: { cientificName: 'Speothos venaticus' },
     update: cachorroVinagreData,
-    create: cachorroVinagreData,
+    create: {
+      ...cachorroVinagreData,
+      icon: {
+        create: cachorroVinagreIcon,
+      },
+      images: {
+        createMany: {
+          data: cachorroVinagreImages,
+        },
+      },
+    },
   });
 
   const gatoMaracajaIcon = buildPrismaImage(animals['gato_maracaja']['icon']);
@@ -76,14 +80,6 @@ export async function cerrado() {
     otherNames: ['Maracajá', 'Margay'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: gatoMaracajaIcon,
-    },
-    images: {
-      createMany: {
-        data: gatoMaracajaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Cerrado',
@@ -96,7 +92,17 @@ export async function cerrado() {
   const gatoMaracaja = await prisma.animal.upsert({
     where: { cientificName: 'Leopardus wiedii' },
     update: gatoMaracajaData,
-    create: gatoMaracajaData,
+    create: {
+      ...gatoMaracajaData,
+      icon: {
+        create: gatoMaracajaIcon,
+      },
+      images: {
+        createMany: {
+          data: gatoMaracajaImages,
+        },
+      },
+    },
   });
 
   const loboGuaraIcon = buildPrismaImage(animals['lobo_guara']['icon']);
@@ -107,14 +113,6 @@ export async function cerrado() {
     otherNames: ['Lobo-de-crina', 'Lobo-vermelho', 'Aguará', 'Aguaraçu'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: loboGuaraIcon,
-    },
-    images: {
-      createMany: {
-        data: loboGuaraImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Cerrado',
@@ -127,7 +125,17 @@ export async function cerrado() {
   const loboGuara = await prisma.animal.upsert({
     where: { cientificName: 'Chrysocyon brachyurus' },
     update: loboGuaraData,
-    create: loboGuaraData,
+    create: {
+      ...loboGuaraData,
+      icon: {
+        create: loboGuaraIcon,
+      },
+      images: {
+        createMany: {
+          data: loboGuaraImages,
+        },
+      },
+    },
   });
 
   const morceguinhoDoCerradoIcon = buildPrismaImage(animals['morceguinho_do_cerrado']['icon']);
@@ -140,14 +148,6 @@ export async function cerrado() {
     otherNames: [],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: morceguinhoDoCerradoIcon,
-    },
-    images: {
-      createMany: {
-        data: morceguinhoDoCerradoImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Cerrado',
@@ -160,7 +160,17 @@ export async function cerrado() {
   const morceguinhoDoCerrado = await prisma.animal.upsert({
     where: { cientificName: 'Lonchophylla dekeyseri' },
     update: morceguinhoDoCerradoData,
-    create: morceguinhoDoCerradoData,
+    create: {
+      ...morceguinhoDoCerradoData,
+      icon: {
+        create: morceguinhoDoCerradoIcon,
+      },
+      images: {
+        createMany: {
+          data: morceguinhoDoCerradoImages,
+        },
+      },
+    },
   });
 
   console.log({ anta, cachorroVinagre, gatoMaracaja, loboGuara, morceguinhoDoCerrado });

@@ -1,19 +1,20 @@
 import { Request, Response } from 'express';
-import { PrismaClient, ConservationStatus } from '@prisma/client';
-
-interface IAnimalParams {
-  name?: string;
-  cientificName?: string;
-  conservationStatus?: ConservationStatus;
-  biomes?: number[];
-  theats?: number[];
-}
-
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export class AnimalController {
   async findAll(request: Request, response: Response) {
-    const animals = await prisma.animal.findMany();
+    const animals = await prisma.animal.findMany({
+      include: {
+        icon: true,
+        images: true,
+        biome: true,
+        threats: true,
+      },
+      orderBy: {
+        id: 'asc',
+      },
+    });
 
     return response.json(animals);
   }
@@ -26,8 +27,9 @@ export class AnimalController {
         id: Number(id),
       },
       include: {
-        biome: true,
+        icon: true,
         images: true,
+        biome: true,
         threats: true,
       },
     });
@@ -35,42 +37,23 @@ export class AnimalController {
     return response.json(animal);
   }
 
-  async findWithFilter(request: Request, response: Response) {
-    const filter = request.body as IAnimalParams;
+  async findByBiome(request: Request, response: Response) {
+    const { biomeId } = request.params;
 
     const animals = await prisma.animal.findMany({
       where: {
-        OR: [
-          {
-            name: {
-              equals: filter.name,
-            },
-          },
-          {
-            otherNames: {
-              has: filter.name,
-            },
-          },
-          {
-            cientificName: {
-              equals: filter.name,
-            },
-          },
-        ],
-
-        conservationStatus: {
-          equals: filter.conservationStatus,
+        biome: {
+          id: Number(biomeId),
         },
-        biomeId: {
-          in: filter.biomes,
-        },
-        threats: {
-          some: {
-            id: {
-              in: filter.theats,
-            },
-          },
-        },
+      },
+      include: {
+        icon: true,
+        images: true,
+        biome: true,
+        threats: true,
+      },
+      orderBy: {
+        id: 'asc',
       },
     });
 

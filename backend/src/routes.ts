@@ -11,7 +11,7 @@ const threatController = new ThreatController();
 
 router.get('/animals/all', animalController.findAll);
 router.get('/animals/:id', animalController.findOne);
-router.get('/animals/filter', animalController.findWithFilter);
+router.get('/animals/biome/:biomeId', animalController.findByBiome);
 
 router.get('/biomes/all', biomeController.findAll);
 router.get('/biomes/:id', biomeController.findOne);

@@ -40,19 +40,21 @@ export async function threats() {
   const agropecuariaData: Prisma.ThreatCreateInput = {
     name: 'Agropecuária',
     description: '',
-    map: {
-      create: agropecuariaMapImage,
-    },
-    images: {
-      createMany: {
-        data: agropecuariaImages,
-      },
-    },
   };
   const agropecuaria = await prisma.threat.upsert({
     where: { name: 'Agropecuária' },
     update: agropecuariaData,
-    create: agropecuariaData,
+    create: {
+      ...agropecuariaData,
+      map: {
+        create: agropecuariaMapImage,
+      },
+      images: {
+        createMany: {
+          data: agropecuariaImages,
+        },
+      },
+    },
   });
 
   const cacaMapImage = buildPrismaImage(threatsImages['caca']['map']);
@@ -60,19 +62,21 @@ export async function threats() {
   const cacaData: Prisma.ThreatCreateInput = {
     name: 'Caça',
     description: '',
-    map: {
-      create: cacaMapImage,
-    },
-    images: {
-      createMany: {
-        data: cacaImages,
-      },
-    },
   };
   const caca = await prisma.threat.upsert({
     where: { name: 'Caça' },
     update: cacaData,
-    create: cacaData,
+    create: {
+      ...cacaData,
+      map: {
+        create: cacaMapImage,
+      },
+      images: {
+        createMany: {
+          data: cacaImages,
+        },
+      },
+    },
   });
 
   const desmatamentoMapImage = buildPrismaImage(threatsImages['desmatamento']['map']);
@@ -82,19 +86,21 @@ export async function threats() {
   const desmatamentoData: Prisma.ThreatCreateInput = {
     name: 'Desmatamento',
     description: '',
-    map: {
-      create: desmatamentoMapImage,
-    },
-    images: {
-      createMany: {
-        data: desmatamentoImages,
-      },
-    },
   };
   const desmatamento = await prisma.threat.upsert({
     where: { name: 'Desmatamento' },
     update: desmatamentoData,
-    create: desmatamentoData,
+    create: {
+      ...desmatamentoData,
+      map: {
+        create: desmatamentoMapImage,
+      },
+      images: {
+        createMany: {
+          data: desmatamentoImages,
+        },
+      },
+    },
   });
 
   const expansaoUrbanaMapImage = buildPrismaImage(threatsImages['expansao_urbana']['map']);
@@ -104,19 +110,21 @@ export async function threats() {
   const expansaoUrbanaData: Prisma.ThreatCreateInput = {
     name: 'Expansão Urbana',
     description: '',
-    map: {
-      create: expansaoUrbanaMapImage,
-    },
-    images: {
-      createMany: {
-        data: expansaoUrbanaImages,
-      },
-    },
   };
   const expansaoUrbana = await prisma.threat.upsert({
     where: { name: 'Expansão Urbana' },
     update: expansaoUrbanaData,
-    create: expansaoUrbanaData,
+    create: {
+      ...expansaoUrbanaData,
+      map: {
+        create: expansaoUrbanaMapImage,
+      },
+      images: {
+        createMany: {
+          data: expansaoUrbanaImages,
+        },
+      },
+    },
   });
 
   const ferroviasRodoviasMapImage = buildPrismaImage(threatsImages['ferrovias_rodovias']['map']);
@@ -126,19 +134,21 @@ export async function threats() {
   const ferroviasRodoviasData: Prisma.ThreatCreateInput = {
     name: 'Ferrovias e Rodovias',
     description: '',
-    map: {
-      create: ferroviasRodoviasMapImage,
-    },
-    images: {
-      createMany: {
-        data: ferroviasRodoviasImages,
-      },
-    },
   };
   const ferroviasRodovias = await prisma.threat.upsert({
     where: { name: 'Ferrovias e Rodovias' },
     update: ferroviasRodoviasData,
-    create: ferroviasRodoviasData,
+    create: {
+      ...ferroviasRodoviasData,
+      map: {
+        create: ferroviasRodoviasMapImage,
+      },
+      images: {
+        createMany: {
+          data: ferroviasRodoviasImages,
+        },
+      },
+    },
   });
 
   const hidreletricaMapImage = buildPrismaImage(threatsImages['hidreletrica']['map']);
@@ -148,19 +158,21 @@ export async function threats() {
   const hidreletricaData: Prisma.ThreatCreateInput = {
     name: 'Hidrelétricas',
     description: '',
-    map: {
-      create: hidreletricaMapImage,
-    },
-    images: {
-      createMany: {
-        data: hidreletricaImages,
-      },
-    },
   };
   const hidreletrica = await prisma.threat.upsert({
     where: { name: 'Hidrelétricas' },
     update: hidreletricaData,
-    create: hidreletricaData,
+    create: {
+      ...hidreletricaData,
+      map: {
+        create: hidreletricaMapImage,
+      },
+      images: {
+        createMany: {
+          data: hidreletricaImages,
+        },
+      },
+    },
   });
 
   const lixoMapImage = buildPrismaImage(threatsImages['lixo']['map']);
@@ -168,19 +180,21 @@ export async function threats() {
   const lixoData: Prisma.ThreatCreateInput = {
     name: 'Lixo',
     description: '',
-    map: {
-      create: lixoMapImage,
-    },
-    images: {
-      createMany: {
-        data: lixoImages,
-      },
-    },
   };
   const lixo = await prisma.threat.upsert({
     where: { name: 'Lixo' },
     update: lixoData,
-    create: lixoData,
+    create: {
+      ...lixoData,
+      map: {
+        create: lixoMapImage,
+      },
+      images: {
+        createMany: {
+          data: lixoImages,
+        },
+      },
+    },
   });
 
   const queimadaMapImage = buildPrismaImage(threatsImages['queimada']['map']);
@@ -188,19 +202,21 @@ export async function threats() {
   const queimadaData: Prisma.ThreatCreateInput = {
     name: 'Queimada',
     description: '',
-    map: {
-      create: queimadaMapImage,
-    },
-    images: {
-      createMany: {
-        data: queimadaImages,
-      },
-    },
   };
   const queimada = await prisma.threat.upsert({
     where: { name: 'Queimada' },
     update: queimadaData,
-    create: queimadaData,
+    create: {
+      ...queimadaData,
+      map: {
+        create: queimadaMapImage,
+      },
+      images: {
+        createMany: {
+          data: queimadaImages,
+        },
+      },
+    },
   });
 
   console.log({ agropecuaria, caca, desmatamento, expansaoUrbana, ferroviasRodovias, hidreletrica, lixo, queimada });

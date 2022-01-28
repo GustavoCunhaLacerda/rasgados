@@ -14,14 +14,6 @@ export async function mataAtlantica() {
     otherNames: ['Cágado-do-paraíba', 'Cágado', 'Cágado-de-hoge', 'Cágado-do-paraíba-do-sul'],
     conservationStatus: 'CR',
     description: '',
-    icon: {
-      create: cagadoDeHogeiIcon,
-    },
-    images: {
-      createMany: {
-        data: cagadoDeHogeiImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Mata Atlântica',
@@ -34,7 +26,17 @@ export async function mataAtlantica() {
   const cagadoDeHogei = await prisma.animal.upsert({
     where: { cientificName: 'Mesoclemmys hogei' },
     update: cagadoDeHogeiData,
-    create: cagadoDeHogeiData,
+    create: {
+      ...cagadoDeHogeiData,
+      icon: {
+        create: cagadoDeHogeiIcon,
+      },
+      images: {
+        createMany: {
+          data: cagadoDeHogeiImages,
+        },
+      },
+    },
   });
 
   const micoLeaoDouradoIcon = buildPrismaImage(animals['mico_leao_dourado']['icon']);
@@ -45,14 +47,6 @@ export async function mataAtlantica() {
     otherNames: ['Sauim-piranga'],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: micoLeaoDouradoIcon,
-    },
-    images: {
-      createMany: {
-        data: micoLeaoDouradoImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Mata Atlântica',
@@ -65,7 +59,17 @@ export async function mataAtlantica() {
   const micoLeaoDourado = await prisma.animal.upsert({
     where: { cientificName: 'Leontopithecus rosalia' },
     update: micoLeaoDouradoData,
-    create: micoLeaoDouradoData,
+    create: {
+      ...micoLeaoDouradoData,
+      icon: {
+        create: micoLeaoDouradoIcon,
+      },
+      images: {
+        createMany: {
+          data: micoLeaoDouradoImages,
+        },
+      },
+    },
   });
 
   const preguicaDeColeiraIcon = buildPrismaImage(animals['preguica_de_coleira']['icon']);
@@ -78,14 +82,6 @@ export async function mataAtlantica() {
     otherNames: ['Aí-pixuna', 'preguiça-preta'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: preguicaDeColeiraIcon,
-    },
-    images: {
-      createMany: {
-        data: preguicaDeColeiraImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Mata Atlântica',
@@ -103,7 +99,17 @@ export async function mataAtlantica() {
   const preguicaDeColeira = await prisma.animal.upsert({
     where: { cientificName: 'Bradypus torquatus' },
     update: preguicaDeColeiraData,
-    create: preguicaDeColeiraData,
+    create: {
+      ...preguicaDeColeiraData,
+      icon: {
+        create: preguicaDeColeiraIcon,
+      },
+      images: {
+        createMany: {
+          data: preguicaDeColeiraImages,
+        },
+      },
+    },
   });
 
   const sairaMilitarIcon = buildPrismaImage(animals['saira_militar']['icon']);
@@ -114,14 +120,6 @@ export async function mataAtlantica() {
     otherNames: [],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: sairaMilitarIcon,
-    },
-    images: {
-      createMany: {
-        data: sairaMilitarImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Mata Atlântica',
@@ -134,7 +132,17 @@ export async function mataAtlantica() {
   const sairaMilitar = await prisma.animal.upsert({
     where: { cientificName: 'Tangara cyanocephala cearensis' },
     update: sairaMilitarData,
-    create: sairaMilitarData,
+    create: {
+      ...sairaMilitarData,
+      icon: {
+        create: sairaMilitarIcon,
+      },
+      images: {
+        createMany: {
+          data: sairaMilitarImages,
+        },
+      },
+    },
   });
 
   const sapinhoAdimiravelDaBarrigaVermelhaIcon = buildPrismaImage(
@@ -149,14 +157,6 @@ export async function mataAtlantica() {
     otherNames: [],
     conservationStatus: 'CR',
     description: '',
-    icon: {
-      create: sapinhoAdimiravelDaBarrigaVermelhaIcon,
-    },
-    images: {
-      createMany: {
-        data: sapinhoAdimiravelDaBarrigaVermelhaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Mata Atlântica',
@@ -169,7 +169,17 @@ export async function mataAtlantica() {
   const sapinhoAdimiravelDaBarrigaVermelha = await prisma.animal.upsert({
     where: { cientificName: 'Melanophryniscus admirabilis' },
     update: sapinhoAdimiravelDaBarrigaVermelhaData,
-    create: sapinhoAdimiravelDaBarrigaVermelhaData,
+    create: {
+      ...sapinhoAdimiravelDaBarrigaVermelhaData,
+      icon: {
+        create: sapinhoAdimiravelDaBarrigaVermelhaIcon,
+      },
+      images: {
+        createMany: {
+          data: sapinhoAdimiravelDaBarrigaVermelhaImages,
+        },
+      },
+    },
   });
 
   console.log({ cagadoDeHogei, micoLeaoDourado, preguicaDeColeira, sairaMilitar, sapinhoAdimiravelDaBarrigaVermelha });

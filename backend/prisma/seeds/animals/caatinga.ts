@@ -14,14 +14,6 @@ export async function caatinga() {
     otherNames: ['Arara', 'Arara-azul-menor'],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: araraAzulDeLearIcon,
-    },
-    images: {
-      createMany: {
-        data: araraAzulDeLearImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Caatinga',
@@ -34,7 +26,17 @@ export async function caatinga() {
   const araraAzulDeLear = await prisma.animal.upsert({
     where: { cientificName: 'Anodorhynchus leari' },
     update: araraAzulDeLearData,
-    create: araraAzulDeLearData,
+    create: {
+      ...araraAzulDeLearData,
+      icon: {
+        create: araraAzulDeLearIcon,
+      },
+      images: {
+        createMany: {
+          data: araraAzulDeLearImages,
+        },
+      },
+    },
   });
 
   const guigoDaCaatingaIcon = buildPrismaImage(animals['guigo_da_caatinga']['icon']);
@@ -45,14 +47,6 @@ export async function caatinga() {
     otherNames: ['Guigó', 'Sauá-loiro', 'Pangola'],
     conservationStatus: 'CR',
     description: '',
-    icon: {
-      create: guigoDaCaatingaIcon,
-    },
-    images: {
-      createMany: {
-        data: guigoDaCaatingaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Caatinga',
@@ -65,7 +59,17 @@ export async function caatinga() {
   const guigoDaCaatinga = await prisma.animal.upsert({
     where: { cientificName: 'Callicebus barbarabrownae' },
     update: guigoDaCaatingaData,
-    create: guigoDaCaatingaData,
+    create: {
+      ...guigoDaCaatingaData,
+      icon: {
+        create: guigoDaCaatingaIcon,
+      },
+      images: {
+        createMany: {
+          data: guigoDaCaatingaImages,
+        },
+      },
+    },
   });
 
   const queixadaIcon = buildPrismaImage(animals['queixada']['icon']);
@@ -76,14 +80,6 @@ export async function caatinga() {
     otherNames: ['Porco-do-mato', 'Queixo-ruivo', 'Taiaçu', 'Cariblanco', 'Chancho do monte'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: queixadaIcon,
-    },
-    images: {
-      createMany: {
-        data: queixadaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Caatinga',
@@ -96,7 +92,17 @@ export async function caatinga() {
   const queixada = await prisma.animal.upsert({
     where: { cientificName: 'Tayassu pecari' },
     update: queixadaData,
-    create: queixadaData,
+    create: {
+      ...queixadaData,
+      icon: {
+        create: queixadaIcon,
+      },
+      images: {
+        createMany: {
+          data: queixadaImages,
+        },
+      },
+    },
   });
 
   const soldadinhoDoAraripeIcon = buildPrismaImage(animals['soldadinho_do_araripe']['icon']);
@@ -115,14 +121,6 @@ export async function caatinga() {
     ],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: soldadinhoDoAraripeIcon,
-    },
-    images: {
-      createMany: {
-        data: soldadinhoDoAraripeImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Caatinga',
@@ -135,7 +133,17 @@ export async function caatinga() {
   const soldadinhoDoAraripe = await prisma.animal.upsert({
     where: { cientificName: 'Antilophia bokermann' },
     update: soldadinhoDoAraripeData,
-    create: soldadinhoDoAraripeData,
+    create: {
+      ...soldadinhoDoAraripeData,
+      icon: {
+        create: soldadinhoDoAraripeIcon,
+      },
+      images: {
+        createMany: {
+          data: soldadinhoDoAraripeImages,
+        },
+      },
+    },
   });
 
   const tatuBolaIcon = buildPrismaImage(animals['tatu_bola']['icon']);
@@ -146,14 +154,6 @@ export async function caatinga() {
     otherNames: ['tatu-apara', 'bola', 'bolinha', 'tranquinha', 'tatu-bola-do-nordeste'],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: tatuBolaIcon,
-    },
-    images: {
-      createMany: {
-        data: tatuBolaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Caatinga',
@@ -166,7 +166,17 @@ export async function caatinga() {
   const tatuBola = await prisma.animal.upsert({
     where: { cientificName: 'Tolypeutes tricinctus' },
     update: tatuBolaData,
-    create: tatuBolaData,
+    create: {
+      ...tatuBolaData,
+      icon: {
+        create: tatuBolaIcon,
+      },
+      images: {
+        createMany: {
+          data: tatuBolaImages,
+        },
+      },
+    },
   });
 
   console.log({ araraAzulDeLear, guigoDaCaatinga, queixada, soldadinhoDoAraripe, tatuBola });

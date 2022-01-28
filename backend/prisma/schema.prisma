@@ -12,10 +12,10 @@ datasource db {
 
 model Image {
   id            Int     @id @default(autoincrement())
-  path          String
+  path          String  @unique
   name          String
-  animalIcon    Animal? @relation("AnimalIcon")
-  animalImage   Animal? @relation("AnimalImages", fields: [animalImageId], references: [id])
+  animalIcon    Animal? @relation(name: "AnimalIcon")
+  animalImage   Animal? @relation(name: "AnimalImages", fields: [animalImageId], references: [id])
   animalImageId Int?
   threatImage   Threat? @relation(name: "ThreatImages", fields: [threatImageId], references: [id])
   threatImageId Int?
@@ -29,8 +29,8 @@ model Image {
 
 model Animal {
   id                 Int                @id @default(autoincrement())
-  icon               Image              @relation("AnimalIcon", fields: [iconId], references: [id])
-  iconId             Int                @unique
+  icon               Image?             @relation("AnimalIcon", fields: [iconId], references: [id])
+  iconId             Int?               @unique
   images             Image[]            @relation("AnimalImages")
   name               String
   cientificName      String             @unique
@@ -46,8 +46,8 @@ model Animal {
 
 model Threat {
   id          Int      @id @default(autoincrement())
-  map         Image    @relation("ThreatMap", fields: [mapId], references: [id])
-  mapId       Int      @unique
+  map         Image?   @relation("ThreatMap", fields: [mapId], references: [id])
+  mapId       Int?     @unique
   images      Image[]  @relation("ThreatImages")
   name        String   @unique
   description String
@@ -58,8 +58,8 @@ model Threat {
 
 model Biome {
   id          Int      @id @default(autoincrement())
-  map         Image    @relation("BiomeMap", fields: [mapId], references: [id])
-  mapId       Int      @unique
+  map         Image?   @relation("BiomeMap", fields: [mapId], references: [id])
+  mapId       Int?     @unique
   images      Image[]  @relation("BiomeImages")
   name        String   @unique
   description String

@@ -14,14 +14,6 @@ export async function amazonia() {
     otherNames: ['Boto-rosa'],
     conservationStatus: 'EN',
     description: '',
-    icon: {
-      create: botoCorDeRosaIcon,
-    },
-    images: {
-      createMany: {
-        data: botoCorDeRosaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Amazônia',
@@ -34,7 +26,17 @@ export async function amazonia() {
   const botoCorDeRosa = await prisma.animal.upsert({
     where: { cientificName: 'Inia geoffrensis' },
     update: botoCorDeRosaData,
-    create: botoCorDeRosaData,
+    create: {
+      ...botoCorDeRosaData,
+      icon: {
+        create: botoCorDeRosaIcon,
+      },
+      images: {
+        createMany: {
+          data: botoCorDeRosaImages,
+        },
+      },
+    },
   });
 
   const harpiaIcon = buildPrismaImage(animals['harpia']['icon']);
@@ -55,14 +57,6 @@ export async function amazonia() {
     ],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: harpiaIcon,
-    },
-    images: {
-      createMany: {
-        data: harpiaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Amazônia',
@@ -75,7 +69,17 @@ export async function amazonia() {
   const harpia = await prisma.animal.upsert({
     where: { cientificName: 'Harpia harpyja' },
     update: harpiaData,
-    create: harpiaData,
+    create: {
+      ...harpiaData,
+      icon: {
+        create: harpiaIcon,
+      },
+      images: {
+        createMany: {
+          data: harpiaImages,
+        },
+      },
+    },
   });
 
   const macacoAranhaDaCaraPretaIcon = buildPrismaImage(animals['macaco_aranha_da_cara_preta']['icon']);
@@ -88,14 +92,6 @@ export async function amazonia() {
     otherNames: ['Macaco-aranha', 'Coatá', 'Coatá-preto'],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: macacoAranhaDaCaraPretaIcon,
-    },
-    images: {
-      createMany: {
-        data: macacoAranhaDaCaraPretaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Amazônia',
@@ -108,7 +104,17 @@ export async function amazonia() {
   const macacoAranhaDaCaraPreta = await prisma.animal.upsert({
     where: { cientificName: 'Ateles chamek' },
     update: macacoAranhaDaCaraPretaData,
-    create: macacoAranhaDaCaraPretaData,
+    create: {
+      ...macacoAranhaDaCaraPretaData,
+      icon: {
+        create: macacoAranhaDaCaraPretaIcon,
+      },
+      images: {
+        createMany: {
+          data: macacoAranhaDaCaraPretaImages,
+        },
+      },
+    },
   });
 
   const oncaPintadaIcon = buildPrismaImage(animals['onca_pintada']['icon']);
@@ -119,14 +125,6 @@ export async function amazonia() {
     otherNames: [],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: oncaPintadaIcon,
-    },
-    images: {
-      createMany: {
-        data: oncaPintadaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Amazônia',
@@ -139,7 +137,17 @@ export async function amazonia() {
   const oncaPintada = await prisma.animal.upsert({
     where: { cientificName: 'Panthera onca' },
     update: oncaPintadaData,
-    create: oncaPintadaData,
+    create: {
+      ...oncaPintadaData,
+      icon: {
+        create: oncaPintadaIcon,
+      },
+      images: {
+        createMany: {
+          data: oncaPintadaImages,
+        },
+      },
+    },
   });
 
   const peixeBoiDaAmazoniaIcon = buildPrismaImage(animals['peixe_boi_da_amazonia']['icon']);
@@ -152,14 +160,6 @@ export async function amazonia() {
     otherNames: [],
     conservationStatus: 'VU',
     description: '',
-    icon: {
-      create: peixeBoiDaAmazoniaIcon,
-    },
-    images: {
-      createMany: {
-        data: peixeBoiDaAmazoniaImages,
-      },
-    },
     biome: {
       connect: {
         name: 'Amazônia',
@@ -172,7 +172,17 @@ export async function amazonia() {
   const peixeBoiDaAmazonia = await prisma.animal.upsert({
     where: { cientificName: 'Trichechus inunguis' },
     update: peixeBoiDaAmazoniaData,
-    create: peixeBoiDaAmazoniaData,
+    create: {
+      ...peixeBoiDaAmazoniaData,
+      icon: {
+        create: peixeBoiDaAmazoniaIcon,
+      },
+      images: {
+        createMany: {
+          data: peixeBoiDaAmazoniaImages,
+        },
+      },
+    },
   });
 
   console.log({ botoCorDeRosa, harpia, macacoAranhaDaCaraPreta, oncaPintada, peixeBoiDaAmazonia });
