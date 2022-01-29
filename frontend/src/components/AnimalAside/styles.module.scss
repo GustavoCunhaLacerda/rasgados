@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 20px 0 0 20px;
+}
+
+.iconContainer {
+  width: 80%;
+  height: 38%;
+  display: flex;
+  align-items: center;
+  margin: 10% auto 3%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+
+  .icon {
+    width: 90%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+.lowerContainer {
+  width: 80%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+  .csContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .csIcon {
+      width: 60%;
+    }
+
+    .csText {
+      font-size: 20px;
+      font-weight: bold;
+
+      margin-top: 5%;
+    }
+  }
+
+  .name {
+    font-size: 32px;
+    font-weight: bold;
+
+    margin: 20% auto;
+  }
+
+  .scientificName {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    color: #e74c3c;
+  }
+}

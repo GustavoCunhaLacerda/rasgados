@@ -17,7 +17,7 @@ import backgroundMataAtlantica from "../../assets/background-images/Background-M
 import backgroundPampa from "../../assets/background-images/Background-Pampa-2.png";
 import backgroundPantanal from "../../assets/background-images/Background-Pantanal-2.png";
 
-import NavigationButton from "../../components/NavigationButton";
+import AnimalAside from "../../components/AnimalAside";
 
 type AnimalsProps = {};
 
@@ -67,7 +67,7 @@ export default function Animals({}: AnimalsProps) {
     <div className={styles.container}>
       <Header title={biome}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-        {Object.entries(biomeAnimals[biome]).map(([_, v], i) => (
+        {Object.entries(biomeAnimals[biome]).map(([_, animal], i) => (
           <div className={styles.pageContainer}>
             <AnimationOnScroll
               animateIn="animate__fadeIn"
@@ -77,8 +77,8 @@ export default function Animals({}: AnimalsProps) {
             >
               <div className={styles.fakeCardContainer} id={`card-${i}`}>
                 <div className={styles.fakeCard}>
-                  <div>
-                    <span>Animal Aside: {v}</span>
+                  <div className={styles.animalAsideContainer}>
+                    <AnimalAside animalName={"Peixe-Boi"} />
                   </div>
                   <div className={styles.divider}></div>
                   <div>
