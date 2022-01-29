@@ -1,2 +1,2 @@
-release: npx prisma migrate deploy && node build/prisma/seed.js
+release: npx prisma migrate reset --force
 web: npm run start
