@@ -24,6 +24,7 @@ import backgroundCaatinga from "../../assets/background-images/Background-Caatin
 import backgroundMataAtlantica from "../../assets/background-images/Background-MataAtlantica-2.png";
 import backgroundPampa from "../../assets/background-images/Background-Pampa-2.png";
 import backgroundPantanal from "../../assets/background-images/Background-Pantanal-2.png";
+
 import NavigationButton from "../../components/NavigationButton";
 
 type TourProps = {
