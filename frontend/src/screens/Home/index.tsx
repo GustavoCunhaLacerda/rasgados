@@ -31,9 +31,9 @@ const FadeOut = batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300));
 
 export default function Home() {
   function scrollTo(el: HTMLElement | null) {
-    console.log(el);
+    // console.log(el);
     if (el) {
-      console.log('👌');
+      // console.log('👌');
       animateScrollTo(el, {
         speed: 1000,
       }).then(_ => {});

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-import { api } from '../../services/api';
+import api from "../../api";
+
 
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
 import VisibilitySensor from 'react-visibility-sensor';
 import animateScrollTo from 'animated-scroll-to';
+import InformationCard from '../../components/InformationCard';
 
 import styles from './styles.module.scss';
 
@@ -27,38 +29,42 @@ type Biome = {
 };
 type Threat = Biome;
 
+
+
+
 type TourProps = {
-  type: 'good' | 'bad';
+  type: "good" | "bad";
 };
 
+
 export default function Tour({ type }: TourProps) {
-  const [biomes, setBiomes] = useState<Biome[]>([]);
-  const [threats, setThreats] = useState<Threat[]>([]);
+  const [titleStack, setTitleStack] = useState<string[]>([]);
+
+  const [animals, setAnimals] = useState<any>(null);
+  const [biomes, setBiomes] = useState<any>(null);
+  const [threats, setThreats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    switch (type) {
-      case 'good':
-        api.get('biomes/all').then(response => {
-          setBiomes(response.data);
-        });
-        break;
-      case 'bad':
-        api.get('threats/all').then(response => {
-          setThreats(response.data);
-        });
-        break;
-      default:
-        break;
-    }
-  }, [type]);
+    async function fetchData() {
+      const animalsData = (await api.animals.list()).data;
+      const biomesData = (await api.biomes.list()).data;
+      const threatsData = (await api.threats.list()).data;
 
-  const [titleStack, setTitleStack] = useState<string[]>([]);
+      setAnimals(animalsData);
+      setBiomes(biomesData);
+      setThreats(threatsData);
+      setLoading(false);
+    }
+
+    fetchData();
+  }, []);
 
   function changeTitle(biome: string, status: boolean) {
     if (status) {
-      setTitleStack(prev => [...prev, biome]);
+      setTitleStack((prev) => [...prev, biome]);
     } else {
-      setTitleStack(prev => prev.filter(prevBiome => prevBiome !== biome));
+      setTitleStack((prev) => prev.filter((prevBiome) => prevBiome !== biome));
     }
   }
 
@@ -67,21 +73,29 @@ export default function Tour({ type }: TourProps) {
   }
 
   function scrollTo(el: HTMLElement | null) {
-    console.log(el);
+    // console.log(el);
     if (el) {
-      console.log('👌');
+      // console.log("👌");
       animateScrollTo(el, {
         verticalOffset: -80,
         speed: 750,
-      }).then(_ => {});
+      });
     }
+  }
+
+  if (loading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
   }
 
   return (
     <div className={styles.container}>
       <Header title={getTitle()}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-        {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
+        {Object.values(type === 'good' ? biomes : threats).map((data: any, i) => (
           <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.name, isVisible)} key={i}>
             <div className={styles.pageContainer}>
               <AnimationOnScroll
@@ -102,9 +116,10 @@ export default function Tour({ type }: TourProps) {
                 style={{ width: '100%' }}
                 offset={0}
               >
-                <div className={styles.fakeCardContainer} id={`card-${i}`}>
-                  <div className={styles.fakeCard}></div>
-                </div>
+                <InformationCard
+                    type={type == "good" ? "biome" : "threat"}
+                    dataId={data.id}
+                  />
               </AnimationOnScroll>
             </div>
           </VisibilitySensor>

@@ -1,7 +1,9 @@
 import React from "react";
 
-type AnimalAsideProps = {};
+type AnimalAsideProps = {
+  animal: string;
+};
 
-export default function AnimalAside({}: AnimalAsideProps) {
+export default function AnimalAside({ animal }: AnimalAsideProps) {
   return <div></div>;
 }
