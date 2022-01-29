@@ -22,7 +22,7 @@
     width: 100%;
   }
 
-  &[data-route="badside"] {
+  &[data-route='badside'] {
     width: 60%;
     background: linear-gradient(108.08deg, rgb(112, 108, 54) 0%, rgb(69, 66, 24) 100%);
 
@@ -33,7 +33,7 @@
     }
   }
 
-  &[data-route="goodside"] {
+  &[data-route='goodside'] {
     width: 60%;
     background: linear-gradient(108.08deg, rgb(75, 110, 56) 0%, rgb(44, 77, 27) 100%);
 
@@ -44,7 +44,7 @@
     }
   }
 
-  &[data-route="goodside/animals"] {
+  &[data-route='animals'] {
     width: 40%;
     background: linear-gradient(108.08deg, rgb(231, 76, 60) 0%, rgb(192, 57, 43) 100%);
 

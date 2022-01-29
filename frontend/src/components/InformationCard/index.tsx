@@ -1,52 +1,79 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import AnimalAside from "../AnimalAside";
-import ImageCarousel from "../ImageCarousel";
-import Description from "../Description";
+import AnimalAside from '../AnimalAside';
+import ImageCarousel from '../ImageCarousel';
+import Description from '../Description';
 
-import styles from "./styles.module.scss";
-import api from "../../api";
+import styles from './styles.module.scss';
+import api from '../../api';
+import { Biome } from '../../api/biomes';
+import { Threat } from '../../api/threats';
+import { Animal } from '../../api/animals';
 
 type InformationCardProps = {
   type: string; // animal or threat
-  dataId: string; // nome do animal ou da ameaça
+  dataId: number; // nome do animal ou da ameaça
 };
 
-export default function InformationCard({
-  type,
-  dataId,
-}: InformationCardProps) {
-  const [data, setData] = useState<any>(null);
+export default function InformationCard({ type, dataId }: InformationCardProps) {
+  const [animal, setAnimal] = useState<Animal>();
+  const [biome, setBiome] = useState<Biome>();
+  const [threat, setThreat] = useState<Threat>();
+  const [loading, setLoading] = useState(true);
+
+  function getData(type: string) {
+    const dataDecider: { [key: string]: Animal | Biome | Threat | undefined } = {
+      animal: animal,
+      biome: biome,
+      threat: threat,
+    };
+    return dataDecider[type] ?? null;
+  }
 
   useEffect(() => {
     async function fetchData() {
-      let response: any;
-      if (type == "biome") response = (await api.biomes.get(dataId)).data;
-      else if (type == "threat")
-        response = (await api.threats.get(dataId)).data;
-      else if (type == "animal")
-        response = (await api.animals.get(dataId)).data;
-      setData(response);
+      switch (type) {
+        case 'animal':
+          setAnimal((await api.animals.getOne(dataId)).data);
+          break;
+        case 'threat':
+          setThreat((await api.threats.get(dataId)).data);
+          break;
+        case 'biome':
+          setBiome((await api.biomes.get(dataId)).data);
+          break;
+      }
+      setLoading(false);
     }
 
     fetchData();
   }, []);
 
-  if (!data) return <div></div>;
-  return (
-    <div className={styles.cardContainer}>
-      <div className={styles.card}>
-        <div className={styles.cardContent}>
-          {/* // TODO: colocar animal aside aqui */}
+  useEffect(() => {
+    console.log('threat', threat);
+  }, [threat]);
 
-          {/* <div> */}
-            <ImageCarousel images={data.images} type={type} />
-          {/* </div> */}
-          <div className={styles.line}/>
-          {/* <div style={{backgroundColor: 'red', height: '250px'}}> */}
-            <Description text={data.description} />
-          {/* </div> */}
-        </div>
+  if (loading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.card}>
+      <div className={styles.cardContent}>
+        {type === 'animal' ? (
+          <>
+            <AnimalAside animal={getData(type) as Animal} />
+            <div className={styles.divider}></div>
+          </>
+        ) : null}
+        <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
+        <div className={styles.line} />
+        <Description text={getData(type)?.description ?? null} />
+        {/* </div> */}
       </div>
     </div>
   );

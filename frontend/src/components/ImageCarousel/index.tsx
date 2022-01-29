@@ -1,11 +1,10 @@
-import { useRef } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { useRef } from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-import Image from "../Image";
+import Image from '../Image';
 
-import styles from "./styles.module.scss";
-import { getImage } from "../../util/getImageFromName";
+import styles from './styles.module.scss';
 
 type ImageCarouselProps = {
   images: null | string[];
@@ -18,7 +17,7 @@ export default function ImageCarousel({ images, type }: ImageCarouselProps) {
   const responsive = {
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: type === "animal" ? 2 : 3,
+      items: type === 'animal' ? 2 : 3,
       // slidesToSlide: 3
     },
     tablet: {
@@ -33,7 +32,7 @@ export default function ImageCarousel({ images, type }: ImageCarouselProps) {
 
   const CustomDot = ({ onMove, index, onClick, active }: any) => {
     return (
-      <li className={active ? "active" : "inactive"} onClick={() => onClick()}>
+      <li className={active ? 'active' : 'inactive'} onClick={() => onClick()}>
         <div className={active ? styles.dotActive : styles.dotInactive} />
       </li>
     );
@@ -52,15 +51,13 @@ export default function ImageCarousel({ images, type }: ImageCarouselProps) {
           infinite
           containerClass={styles.containerWithDots}
           itemClass={styles.imageItem}
-          deviceType={"desktop"}
+          deviceType={'desktop'}
           customDot={<CustomDot />}
-          autoPlaySpeed={2000}
+          autoPlaySpeed={3000}
           autoPlay={true}
         >
-          {images.map((img: any, index: number) => {
-            console.log(img.path);
-
-            return <Image url={getImage(img.path) as string} key={index} />;
+          {images.map((image, i) => {
+            return <Image url={`${process.env.REACT_APP_API_URL}/${image}`} key={i} />;
           })}
         </Carousel>
       ) : null}
