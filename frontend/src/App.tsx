@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './screens/Home';
-import Animals from './screens/Animals';
-import Threats from './screens/Threats';
-import Tour from './screens/Tour';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./screens/Home";
+import Animals from "./screens/Animals";
+import Threats from "./screens/Threats";
+import Tour from "./screens/Tour";
 
 function App() {
   function getScrollbarWidth() {
@@ -10,24 +10,25 @@ function App() {
     const withScrollBar = window.innerWidth;
 
     // Get window width excluding scrollbar.
-    const noScrollBar = document.querySelector('body')?.getBoundingClientRect().width;
+    const noScrollBar = document.querySelector("body")?.getBoundingClientRect().width;
 
     // Calc the scrollbar width.
     const scrollbarWidth = `${withScrollBar - (noScrollBar ?? 0)}px`;
 
     // Update the CSS custom property value.
     let root = document.documentElement;
-    root.style.setProperty('--scrollbar', scrollbarWidth);
+    root.style.setProperty("--scrollbar", scrollbarWidth);
   }
+
   return (
     <Router>
-      <div className='app' onLoad={getScrollbarWidth}>
+      <div className="app" onLoad={getScrollbarWidth}>
         <Routes>
           <Route index element={<Home />} />
-          <Route path='/badside' element={<Tour type='bad' />} />
-          <Route path='/goodside' element={<Tour type='good' />} />
-          <Route path='/goodside/animals' element={<Animals />} />
-          <Route path='/badside/threats' element={<Threats />} />
+          <Route path="/badside" element={<Tour type="bad" />} />
+          <Route path="/goodside" element={<Tour type="good" />} />
+          <Route path="/goodside/animals" element={<Animals />} />
+          <Route path="/badside/threats" element={<Threats />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,57 @@
+.button {
+  padding: 0.7rem;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  height: 100%;
+  // width: 60%;
+  // min-width: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+
+  span {
+    font-weight: 400;
+    width: 100%;
+  }
+
+  &[data-route="badside"] {
+    width: 60%;
+    background: linear-gradient(108.08deg, rgb(112, 108, 54) 0%, rgb(69, 66, 24) 100%);
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), -0.125rem -0.125rem 1rem rgba(112, 108, 54, 0.5),
+        0.125rem 0.125rem 1rem rgba(69, 66, 24, 0.5);
+    }
+  }
+
+  &[data-route="goodside"] {
+    width: 60%;
+    background: linear-gradient(108.08deg, rgb(75, 110, 56) 0%, rgb(44, 77, 27) 100%);
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), -0.125rem -0.125rem 1rem rgba(75, 110, 56, 0.5),
+        0.125rem 0.125rem 1rem rgba(44, 77, 27, 0.5);
+    }
+  }
+
+  &[data-route="goodside/animals"] {
+    width: 40%;
+    background: linear-gradient(108.08deg, rgb(231, 76, 60) 0%, rgb(192, 57, 43) 100%);
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3), -0.125rem -0.125rem 1rem rgba(231, 76, 60, 0.5),
+        0.125rem 0.125rem 1rem rgba(192, 57, 43, 0.5);
+    }
+  }
+}
