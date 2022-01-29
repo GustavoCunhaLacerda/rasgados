@@ -11,6 +11,5 @@ const images = importAll(
 );
 
 export function getImage(imageName) {
-  console.log('image name: ', imageName);
-  return images
+  return images[imageName]
 }

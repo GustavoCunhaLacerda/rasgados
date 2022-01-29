@@ -5,3 +5,15 @@
 .containerWithDots {
   padding-bottom: 10px;
 }
+
+.dotActive {
+  width: 50px;
+  height: 2px;
+  background-color: rgba(50, 50, 50, 1);
+}
+
+.dotInactive {
+  width: 50px;
+  height: 2px;
+  background-color: rgba(50, 50, 50, 0.4);
+}

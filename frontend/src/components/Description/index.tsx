@@ -1,4 +1,4 @@
-import "./styles.css";
+import styles from "./styles.module.scss";
 
 type DescriptionProps = {
   text: null | string;
@@ -6,8 +6,8 @@ type DescriptionProps = {
 
 export default function Description({ text }: DescriptionProps) {
   return (
-    <div className={""}>
-      <p>{text}</p>
+    <div className={styles.description}>
+      <p className={styles.descriptionText}>{text}</p>
     </div>
   );
 }

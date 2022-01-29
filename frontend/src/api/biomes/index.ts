@@ -6,6 +6,6 @@ export default {
   },
 
   get(biomeId: string) {
-    return axios.get("/animals/" + biomeId);
+    return axios.get("/biomes/" + biomeId);
   },
 };

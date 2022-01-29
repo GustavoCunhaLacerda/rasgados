@@ -1,16 +1,25 @@
-import Carousel, { ResponsiveType } from "react-multi-carousel";
+import { useRef } from "react";
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
+import Image from "../Image";
+
+import styles from "./styles.module.scss";
+import { getImage } from "../../util/getImageFromName";
+
 type ImageCarouselProps = {
-  images: any | string[];
-  type: any | string;
+  images: null | string[];
+  type: null | string;
 };
 
 export default function ImageCarousel({ images, type }: ImageCarouselProps) {
+  const carousel = useRef(null);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: 3,
+      items: type === "animal" ? 2 : 3,
+      // slidesToSlide: 3
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -22,21 +31,36 @@ export default function ImageCarousel({ images, type }: ImageCarouselProps) {
     },
   };
 
+  const CustomDot = ({ onMove, index, onClick, active }: any) => {
+    return (
+      <li className={active ? "active" : "inactive"} onClick={() => onClick()}>
+        <div className={active ? styles.dotActive : styles.dotInactive} />
+      </li>
+    );
+  };
+
   return (
     <div>
       {images ? (
         <Carousel
-          swipeable={true}
-          draggable={true}
-          infinite={true}
           responsive={responsive}
+          ssr
+          ref={(el: any) => {
+            carousel.current = el;
+          }}
+          showDots
+          infinite
+          containerClass={styles.containerWithDots}
+          itemClass={styles.imageItem}
+          deviceType={"desktop"}
+          customDot={<CustomDot />}
+          autoPlaySpeed={2000}
+          autoPlay={true}
         >
-          {images.map((img: string, index: number) => {
-            return (
-              <div key={index} style={{ width: 400, height: 400 }}>
-                <img src={img} style={{ objectFit: "cover" }} />
-              </div>
-            );
+          {images.map((img: any, index: number) => {
+            console.log(img.path);
+
+            return <Image url={getImage(img.path) as string} key={index} />;
           })}
         </Carousel>
       ) : null}
