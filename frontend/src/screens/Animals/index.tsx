@@ -14,6 +14,7 @@ import styles from './styles.module.scss';
 
 import background from '../../assets/background-images/Background-Tour.png';
 import InformationCard from '../../components/InformationCard';
+import { TailSpin } from 'react-loader-spinner';
 
 type AnimalsParams = {
   biomeId: string;
@@ -25,11 +26,14 @@ export default function Animals() {
 
   const [animals, setAnimals] = useState<Animal[]>();
   const [biome, setBiome] = useState<Biome>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       setAnimals((await api.animals.getByBiome(biomeId)).data);
       setBiome((await api.biomes.get(biomeId)).data);
+
+      setLoading(false);
     }
 
     fetchData();
@@ -45,7 +49,9 @@ export default function Animals() {
     }
   }
 
-  return (
+  return loading ? (
+    <TailSpin width={80} height={80} color='#e74c3c' wrapperClass={styles.loadingContainer} />
+  ) : (
     <div className={styles.container}>
       <Header title={biome?.name ?? ''}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
@@ -58,7 +64,7 @@ export default function Animals() {
               offset={0}
             >
               <div className={styles.cardContainer}>
-                <InformationCard type={'animal'} dataId={animal.id} />
+                <InformationCard type={'animal'} animal={animal} />
               </div>
 
               {/* <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i + 1}`))}></ScrollButton> */}

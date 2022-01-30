@@ -1,7 +1,3 @@
-import { Link } from 'react-router-dom';
-import { Icon } from '@mdi/react';
-import { mdiChevronRight } from '@mdi/js';
-
 import styles from './styles.module.scss';
 
 import amazoniaGood from '../../assets/background-images/Amazonia-Good.png';
