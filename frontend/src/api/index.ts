@@ -1,6 +1,6 @@
-import animals from './animals';
-import biomes from './biomes';
-import threats from './threats';
+import { animals } from './animals';
+import { biomes } from './biomes';
+import { threats } from './threats';
 
 export type Image = {
   id: number;
@@ -8,7 +8,7 @@ export type Image = {
   name: string;
 };
 
-export default {
+export const api = {
   animals,
   biomes,
   threats,

@@ -1,15 +1,15 @@
-import _axios from 'axios';
-import { setupInterceptorsTo } from '../middleware/interceptors';
+import _axios, { AxiosInstance } from 'axios';
+import { attachInterceptors } from '../middleware/interceptors';
 
-function axiosBuilder() {
-  const axios = setupInterceptorsTo(
-    _axios.create({
-      baseURL: process.env.REACT_APP_API_URL,
-      timeout: 10000,
-    })
-  );
+function axiosBuilder(): AxiosInstance {
+  const axios = _axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+    timeout: 10000,
+  });
 
-  return axios;
+  const axiosWithInterceptors = attachInterceptors(axios);
+
+  return axiosWithInterceptors;
 }
 
-export default axiosBuilder();
+export const axios = axiosBuilder();

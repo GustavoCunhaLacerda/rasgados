@@ -1,5 +1,5 @@
 import { Image } from '..';
-import axios from '../../plugins/axios';
+import { axios } from '../../plugins/axios';
 
 export type Threat = {
   id: number;
@@ -9,9 +9,9 @@ export type Threat = {
   images: Image[];
 };
 
-export default {
+export const threats = {
   list() {
-    return axios.get('/threats/all');
+    return axios.get<Threat[]>('/threats/all');
   },
 
   get(threatId: number) {

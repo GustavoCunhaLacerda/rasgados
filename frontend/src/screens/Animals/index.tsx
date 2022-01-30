@@ -8,7 +8,7 @@ import { Biome } from '../../api/biomes';
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
 import AnimalAside from '../../components/AnimalAside';
-import api from '../../api';
+import { api } from '../../api';
 
 import styles from './styles.module.scss';
 

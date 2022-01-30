@@ -8,7 +8,7 @@ import { TailSpin } from 'react-loader-spinner';
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
 import InformationCard from '../../components/InformationCard';
-import api from '../../api';
+import { api } from '../../api';
 import { Biome } from '../../api/biomes';
 import { Threat } from '../../api/threats';
 import NavigationButton from '../../components/NavigationButton';

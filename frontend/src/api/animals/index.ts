@@ -1,5 +1,5 @@
 import { Image } from '..';
-import axios from '../../plugins/axios';
+import { axios } from '../../plugins/axios';
 import { Biome } from '../biomes';
 import { Threat } from '../threats';
 
@@ -26,16 +26,16 @@ export type Animal = {
   threats: Threat[];
 };
 
-export default {
+export const animals = {
   list() {
-    return axios.get('/animals/all');
+    return axios.get<Animal[]>('/animals/all');
   },
 
   getOne(animalId: number) {
-    return axios.get(`/animals/${animalId}`);
+    return axios.get<Animal>(`/animals/${animalId}`);
   },
 
   getByBiome(biomeId: number) {
-    return axios.get(`/animals/biome/${biomeId}`);
+    return axios.get<Animal[]>(`/animals/biome/${biomeId}`);
   },
 };

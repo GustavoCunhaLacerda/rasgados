@@ -1,5 +1,5 @@
 import { Image } from '..';
-import axios from '../../plugins/axios';
+import { axios } from '../../plugins/axios';
 
 export type Biome = {
   id: number;
@@ -9,12 +9,12 @@ export type Biome = {
   images: Image[];
 };
 
-export default {
+export const biomes = {
   list() {
-    return axios.get('/biomes/all');
+    return axios.get<Biome[]>('/biomes/all');
   },
 
   get(biomeId: number) {
-    return axios.get(`/biomes/${biomeId}`);
+    return axios.get<Biome>(`/biomes/${biomeId}`);
   },
 };
