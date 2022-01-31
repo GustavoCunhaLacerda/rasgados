@@ -23,7 +23,8 @@
 
 .cardContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   padding: 2.5% 5%;

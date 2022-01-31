@@ -11,6 +11,7 @@ import bgPantanalIcon from '../../assets/background-images/AnimalBackground-Pant
 
 import styles from './styles.module.scss';
 import { Animal } from '../../api/animals';
+import { useEffect } from 'react';
 
 type AnimalAsideProps = {
   animal: Animal;
@@ -41,26 +42,33 @@ const animalBackgroundDecider: { [key: string]: any } = {
 };
 
 export default function AnimalAside({ animal }: AnimalAsideProps) {
+  useEffect(() => {
+    console.log(animal);
+  }, []);
   return (
     <div className={styles.container}>
       <div
         className={styles.iconContainer}
         style={{ backgroundImage: `url(${animalBackgroundDecider[animal.biome.name]})` }}
       >
-        <img src={animal.icon.path} alt={`Ícone do ${animal.name}`} className={styles.icon} />
+        <img
+          src={`${process.env.REACT_APP_API_URL}/${animal.icon.path}`}
+          alt={`Ícone do ${animal.name}`}
+          className={styles.icon}
+        />
       </div>
-      <div className={styles.lowerContainer}>
-        <div className={styles.csContainer}>
-          <img
-            src={conservationStatusDecider[animal.conservationStatus].icon}
-            alt={`Ícone Status de Conservação: ${conservationStatusDecider[animal.conservationStatus].name}`}
-            className={styles.csIcon}
-          />
-          <span className={styles.csText}>{conservationStatusDecider[animal.conservationStatus].name}</span>
-        </div>
-        <span className={styles.name}>{animal.name.toUpperCase()}</span>
-        <span className={styles.cientificName}>{animal.cientificName}</span>
+      {/* <div className={styles.lowerContainer}> */}
+      <div className={styles.csContainer}>
+        <img
+          src={conservationStatusDecider[animal.conservationStatus].icon}
+          alt={`Ícone Status de Conservação: ${conservationStatusDecider[animal.conservationStatus].name}`}
+          className={styles.csIcon}
+        />
+        <span className={styles.csText}>{conservationStatusDecider[animal.conservationStatus].name}</span>
       </div>
+      <span className={styles.name}>{animal.name.toUpperCase()}</span>
+      <span className={styles.scientificName}>{animal.cientificName}</span>
+      {/* </div> */}
     </div>
   );
 }

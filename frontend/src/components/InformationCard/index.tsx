@@ -5,7 +5,6 @@ import ImageCarousel from '../ImageCarousel';
 import Description from '../Description';
 
 import styles from './styles.module.scss';
-import api from '../../api';
 import { Biome } from '../../api/biomes';
 import { Threat } from '../../api/threats';
 import { Animal } from '../../api/animals';
@@ -29,17 +28,23 @@ export default function InformationCard({ type, animal, biome, threat }: Informa
 
   return (
     <div className={styles.card}>
-      <div className={styles.cardContent}>
-        {type === 'animal' ? (
-          <>
-            <AnimalAside animal={getData(type) as Animal} />
-            <div className={styles.divider}></div>
-          </>
-        ) : null}
-        <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
-        <div className={styles.line} />
-        <Description text={getData(type)?.description ?? null} />
-      </div>
+      {type === 'animal' ? (
+        <div className={styles.animalContainer}>
+          <AnimalAside animal={getData(type) as Animal} />
+          <div className={styles.divider}></div>
+          {/* <div className={styles.cardContent}>
+            <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
+            <div className={styles.line} />
+            <Description text={getData(type)?.description ?? null} />
+          </div> */}
+        </div>
+      ) : (
+        <div className={styles.cardContent}>
+          <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
+          <div className={styles.line} />
+          <Description text={getData(type)?.description ?? null} />
+        </div>
+      )}
     </div>
   );
 }

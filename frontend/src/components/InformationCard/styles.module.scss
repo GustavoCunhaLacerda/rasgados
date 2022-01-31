@@ -9,6 +9,13 @@
   justify-content: center;
 }
 
+.animalContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
 .cardContent {
   width: 70%;
   padding: 40px 0 40px 0;
