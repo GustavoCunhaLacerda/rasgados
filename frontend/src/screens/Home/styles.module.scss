@@ -18,13 +18,10 @@ p {
   flex-direction: column;
 
   height: 100vh;
-  width: calc(100vw - var(--scrollbar));
-  margin-right: var(--scrollbar);
+  width: 100%;
 
   padding-top: 20px;
   padding-bottom: 20px;
-
-  // width: calc(100vw - (100vw - 100%));
 }
 
 .titleBox {
@@ -104,14 +101,12 @@ p {
 
 .choicesContainer {
   display: grid;
-  margin: 0 auto;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
   column-gap: 3%;
   height: 100vh;
-  width: calc(90vw - var(--scrollbar));
-  margin-right: var(--scrollbar);
   padding: 1.5% 5%;
   overflow: auto;
 }

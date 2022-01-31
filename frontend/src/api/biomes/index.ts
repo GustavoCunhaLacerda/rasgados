@@ -1,11 +1,20 @@
-import axios from "../../plugins/axios";
+import { Image } from '..';
+import { axios } from '../../plugins/axios';
 
-export default {
+export type Biome = {
+  id: number;
+  name: string;
+  description: string;
+  map: Image;
+  images: Image[];
+};
+
+export const biomes = {
   list() {
-    return axios.get("/biomes/all");
+    return axios.get<Biome[]>('/biomes/all');
   },
 
-  get(biomeId: string) {
-    return axios.get("/biomes/" + biomeId);
+  get(biomeId: number) {
+    return axios.get<Biome>(`/biomes/${biomeId}`);
   },
 };

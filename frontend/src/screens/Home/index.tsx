@@ -1,39 +1,19 @@
-import {
-  Animator,
-  ScrollContainer,
-  ScrollPage,
-  batch,
-  Fade,
-  FadeIn,
-  Move,
-  MoveIn,
-  MoveOut,
-  Sticky,
-  StickyIn,
-  StickyOut,
-  ZoomIn,
-} from 'react-scroll-motion';
+import { Animator, ScrollContainer, ScrollPage, batch, Fade, MoveIn, MoveOut } from 'react-scroll-motion';
 import animateScrollTo from 'animated-scroll-to';
 
 import ChoiceCard from '../../components/ChoiceCard';
 
-// import "aos/dist/aos.css";
 import styles from './styles.module.scss';
-// import { mdiMouseMoveDown } from "@mdi/js";
 
 import logo from '../../assets/icons/RasgadosLogo.svg';
 import scrollDownWhite from '../../assets/icons/ScrollDownWhite.svg';
 
-const FadeOut = batch(Fade(), StickyOut(), MoveIn(0, 100), MoveOut(0, -300));
-// const FadeOut = batch(Fade(), MoveIn(0, 100), MoveOut(0, -300));
-
-// type HomeProps = {};
+const FadeOut = batch(Fade(), MoveIn(0, 100), MoveOut(0, -300));
 
 export default function Home() {
   function scrollTo(el: HTMLElement | null) {
-    // console.log(el);
     if (el) {
-      // console.log('👌');
+      console.log('👌');
       animateScrollTo(el, {
         speed: 1000,
       }).then(_ => {});

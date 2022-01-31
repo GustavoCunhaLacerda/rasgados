@@ -1,64 +1,74 @@
+import iconVU from '../../assets/icons/conservation-state/VU.png';
+import iconEN from '../../assets/icons/conservation-state/EN.png';
+import iconCR from '../../assets/icons/conservation-state/CR.png';
 
-import icone from "../../assets/icons/animals/amazonia/peixe-boi-2_Line+Color.svg";
-import bgIcone from "../../assets/background-images/AnimalBackground-Amazonia.png";
-import iconeCS from "../../assets/icons/conservation-state/VU.png";
+import bgAmazoniaIcon from '../../assets/background-images/AnimalBackground-Amazonia.png';
+import bgCaatingaIcon from '../../assets/background-images/AnimalBackground-Caatinga.png';
+import bgCerradoIcon from '../../assets/background-images/AnimalBackground-Cerrado.png';
+import bgMataAtlanticaIcon from '../../assets/background-images/AnimalBackground-MataAtlantica.png';
+import bgPampaIcon from '../../assets/background-images/AnimalBackground-Pampa.png';
+import bgPantanalIcon from '../../assets/background-images/AnimalBackground-Pantanal.png';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
+import { Animal } from '../../api/animals';
+import { useEffect } from 'react';
 
 type AnimalAsideProps = {
-  animalName: string;
+  animal: Animal;
 };
 
-type Animal = {
-  name: string;
-  scientificName: string;
-  icon: string;
-  biome: string;
-  conservationStatus: string;
-  conservationStatusIcon: string;
-};
-
-const animals: { [key: string]: Animal } = {
-  "Peixe-Boi": {
-    name: "Peixe-Boi-da-Amazônia",
-    scientificName: "Trichechus inunguis",
-    icon: "../../assets/icons/animals/amazonia/peixe-boi-2_Line+Color.svg",
-    biome: "Amazônia",
-    conservationStatus: "VU",
-    conservationStatusIcon: "../../assets/icons/conservation-state/VU.png",
+const conservationStatusDecider: { [key: string]: { name: string; icon: any } } = {
+  CR: {
+    name: 'Criticamente em Perigo',
+    icon: iconCR,
+  },
+  EN: {
+    name: 'Em Perigo',
+    icon: iconEN,
+  },
+  VU: {
+    name: 'Vulnerável',
+    icon: iconVU,
   },
 };
 
-const conservationStatusDict: { [key: string]: string } = {
-  CR: "Criticamente em Perigo",
-  EN: "Em Perigo",
-  VU: "Vulnerável",
+const animalBackgroundDecider: { [key: string]: any } = {
+  Amazônia: bgAmazoniaIcon,
+  Caatinga: bgCaatingaIcon,
+  Cerrado: bgCerradoIcon,
+  'Mata Atlântica': bgMataAtlanticaIcon,
+  Pampa: bgPampaIcon,
+  Pantanal: bgPantanalIcon,
 };
 
-export default function AnimalAside({ animalName }: AnimalAsideProps) {
-  const animal = animals[animalName];
+export default function AnimalAside({ animal }: AnimalAsideProps) {
+  useEffect(() => {
+    console.log(animal);
+  }, []);
   return (
     <div className={styles.container}>
-      {/* <img src={require("" + animal.icon)} alt={`Ícone do ${animal.name}`}></img> */}
-      <div className={styles.iconContainer} style={{ backgroundImage: `url(${bgIcone})` }}>
-        <img src={icone} alt={`Ícone do ${animal.name}`} className={styles.icon} />
+      <div
+        className={styles.iconContainer}
+        style={{ backgroundImage: `url(${animalBackgroundDecider[animal.biome.name]})` }}
+      >
+        <img
+          src={`${process.env.REACT_APP_API_URL}/${animal.icon.path}`}
+          alt={`Ícone do ${animal.name}`}
+          className={styles.icon}
+        />
       </div>
-      <div className={styles.lowerContainer}>
-        <div className={styles.csContainer}>
-          {/* <img
-          src={require("" + animal.conservationStatusIcon)}
-          alt={`Ícone Status de Conservação: ${conservationStatusDict[animal.conservationStatus]}`}
-        /> */}
-          <img
-            src={iconeCS}
-            alt={`Ícone Status de Conservação: ${conservationStatusDict[animal.conservationStatus]}`}
-            className={styles.csIcon}
-          />
-          <span className={styles.csText}>{conservationStatusDict[animal.conservationStatus]}</span>
-        </div>
-        <span className={styles.name}>{animal.name.toUpperCase()}</span>
-        <span className={styles.scientificName}>{animal.scientificName}</span>
+      {/* <div className={styles.lowerContainer}> */}
+      <div className={styles.csContainer}>
+        <img
+          src={conservationStatusDecider[animal.conservationStatus].icon}
+          alt={`Ícone Status de Conservação: ${conservationStatusDecider[animal.conservationStatus].name}`}
+          className={styles.csIcon}
+        />
+        <span className={styles.csText}>{conservationStatusDecider[animal.conservationStatus].name}</span>
       </div>
+      <span className={styles.name}>{animal.name.toUpperCase()}</span>
+      <span className={styles.scientificName}>{animal.cientificName}</span>
+      {/* </div> */}
     </div>
   );
 }
