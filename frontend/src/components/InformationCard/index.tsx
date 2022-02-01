@@ -24,33 +24,33 @@ export default function InformationCard({ type, animal, biome, threat }: Informa
     return dataDecider[type] ?? null;
   }
 
-  return (
-    <div className={styles.card}>
-      {type === 'animal' ? (
-        <div className={styles.animalContainer}>
-          <AnimalAside animal={getData(type) as Animal} />
-          <div className={styles.divider}></div>
-          <div className={styles.cardContent} data-animal>
-            <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
-            <div className={styles.line} />
-            {(getData(type) as Animal)?.otherNames.length > 0 ? (
-              <div className={styles.otherNames}>
-                <h5>Outros Nomes</h5>
-                {(getData(type) as Animal)?.otherNames.map((otherName, i) => (
-                  <span key={i}>{otherName}</span>
-                ))}
-              </div>
-            ) : null}
-            <Description text={getData(type)?.description} />
+  return type === 'animal' ? (
+    <div className={styles.cardWithAnimal}>
+      <div className={styles.animalContainer}>
+        <AnimalAside animal={getData(type) as Animal} />
+      </div>
+      <div className={styles.divider}></div>
+      <div className={styles.cardContent} data-animal>
+        <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
+        <div className={styles.line} />
+        {(getData(type) as Animal)?.otherNames.length > 0 ? (
+          <div className={styles.otherNames}>
+            <h5>Outros Nomes</h5>
+            {(getData(type) as Animal)?.otherNames.map((otherName, i) => (
+              <span key={i}>{otherName}</span>
+            ))}
           </div>
-        </div>
-      ) : (
-        <div className={styles.cardContent}>
-          <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
-          <div className={styles.line} />
-          <Description text={getData(type)?.description} />
-        </div>
-      )}
+        ) : null}
+        <Description text={getData(type)?.description} />
+      </div>
+    </div>
+  ) : (
+    <div className={styles.card}>
+      <div className={styles.cardContent}>
+        <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
+        <div className={styles.line} />
+        <Description text={getData(type)?.description} />
+      </div>
     </div>
   );
 }

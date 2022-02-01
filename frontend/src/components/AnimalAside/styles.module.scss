@@ -32,15 +32,6 @@
   filter: drop-shadow(0 2px 4px rgba($color: #000000, $alpha: 0.5));
 }
 
-.lowerContainer {
-  width: 80%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-}
-
 .csContainer {
   display: flex;
   flex-direction: column;
@@ -63,22 +54,21 @@
 }
 
 .name {
-  font-size: 2rem;
+  font-size: calc(1.3rem + 1vmin);
   font-weight: bold;
   text-align: center;
 
-  margin: 2rem 0;
+  margin: 20% 0;
 
   color: #323232;
   text-shadow: 0 2px 4px rgba($color: #000000, $alpha: 0.25);
 }
 
 .scientificName {
-  font-size: 1.5rem;
+  font-size: calc(1rem + 1vmin);
   font-weight: bold;
   font-style: italic;
   text-align: center;
-  margin-bottom: 2rem;
 
   color: #e74c3c;
   text-shadow: 0 2px 4px rgba($color: #e74c3c, $alpha: 0.25);
