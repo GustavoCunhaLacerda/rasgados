@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 import AnimalAside from '../AnimalAside';
 import ImageCarousel from '../ImageCarousel';
 import Description from '../Description';
@@ -35,6 +33,14 @@ export default function InformationCard({ type, animal, biome, threat }: Informa
           <div className={styles.cardContent} data-animal>
             <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
             <div className={styles.line} />
+            {(getData(type) as Animal)?.otherNames.length > 0 ? (
+              <div className={styles.otherNames}>
+                <h5>Outros Nomes</h5>
+                {(getData(type) as Animal)?.otherNames.map((otherName, i) => (
+                  <span key={i}>{otherName}</span>
+                ))}
+              </div>
+            ) : null}
             <Description text={getData(type)?.description} />
           </div>
         </div>

@@ -6,9 +6,10 @@ import styles from './styles.module.scss';
 type ImageProps = {
   url: string;
   alt?: string;
+  id?: string;
 };
 
-const Image = ({ url, alt }: ImageProps) => {
+const Image = ({ url, alt, id }: ImageProps) => {
   const [loading, setLoading] = useState(true);
 
   function imageOnLoad() {

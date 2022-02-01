@@ -11,7 +11,6 @@ import bgPantanalIcon from '../../assets/background-images/AnimalBackground-Pant
 
 import styles from './styles.module.scss';
 import { Animal } from '../../api/animals';
-import { useEffect } from 'react';
 
 type AnimalAsideProps = {
   animal: Animal;
@@ -42,9 +41,6 @@ const animalBackgroundDecider: { [key: string]: any } = {
 };
 
 export default function AnimalAside({ animal }: AnimalAsideProps) {
-  useEffect(() => {
-    console.log(animal);
-  }, []);
   return (
     <div className={styles.container}>
       <div
