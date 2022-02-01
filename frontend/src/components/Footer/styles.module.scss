@@ -46,15 +46,25 @@
 .section {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   h5 {
     font-weight: bold;
     font-size: 1.5rem;
     color: #e74c3c;
     line-height: 2rem;
   }
-  span {
-    font-size: 1rem;
-    color: #e5e5e5;
-    line-height: 1.5rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #e5e5e5;
+  line-height: 1.5rem;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
