@@ -57,7 +57,6 @@ export default function AnimalAside({ animal }: AnimalAsideProps) {
           className={styles.icon}
         />
       </div>
-      {/* <div className={styles.lowerContainer}> */}
       <div className={styles.csContainer}>
         <img
           src={conservationStatusDecider[animal.conservationStatus].icon}
@@ -68,7 +67,6 @@ export default function AnimalAside({ animal }: AnimalAsideProps) {
       </div>
       <span className={styles.name}>{animal.name.toUpperCase()}</span>
       <span className={styles.scientificName}>{animal.cientificName}</span>
-      {/* </div> */}
     </div>
   );
 }

@@ -3,16 +3,17 @@ import { AnimationOnScroll } from 'react-animation-on-scroll';
 import VisibilitySensor from 'react-visibility-sensor';
 import animateScrollTo from 'animated-scroll-to';
 import { TailSpin } from 'react-loader-spinner';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import Header from '../../components/Header';
 import ScrollButton from '../../components/ScrollButton';
 import InformationCard from '../../components/InformationCard';
+import ScrollUpPage from '../../components/ScrollUpPage';
+import NavigationButton from '../../components/NavigationButton';
+import Image from '../../components/Image';
+
 import { api } from '../../api';
 import { Biome } from '../../api/biomes';
 import { Threat } from '../../api/threats';
-import NavigationButton from '../../components/NavigationButton';
-import Image from '../../components/Image';
 
 import styles from './styles.module.scss';
 
@@ -42,7 +43,7 @@ export default function Tour({ type }: TourProps) {
     fetchData();
   }, []);
 
-  function changeTitle(biome: string, status: boolean) {
+  function changeTitle(biome: string, status: boolean, i: number) {
     if (status) {
       setTitleStack(prev => [...prev, biome]);
     } else {
@@ -70,51 +71,58 @@ export default function Tour({ type }: TourProps) {
   return loading ? (
     <TailSpin width={80} height={80} color='#e74c3c' wrapperClass={styles.loadingContainer} />
   ) : (
-    <div className={styles.container}>
-      <Header title={getTitle()}></Header>
-      <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-        {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
-          <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.name, isVisible)} key={i}>
-            <div className={styles.pageContainer}>
-              <AnimationOnScroll
-                animateIn='animate__fadeIn'
-                animateOut='animate__fadeOut'
-                style={{ width: 'auto' }}
-                // animatePreScroll={false}
-                offset={0}
-              >
-                <div className={styles.mapContainer}>
-                  <Image url={`${process.env.REACT_APP_API_URL}/${data.map.path}`} alt={data.map.name} />
-                  <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i}`))}></ScrollButton>
-                </div>
-              </AnimationOnScroll>
-              <AnimationOnScroll
-                animateIn='animate__fadeIn'
-                animateOut='animate__fadeOut'
-                style={{ width: 'auto' }}
-                offset={0}
-              >
-                <div className={styles.cardContainer}>
-                  {type === 'good' ? (
-                    <>
-                      <InformationCard type={'biome'} biome={data} />
-                      <div className={styles.containerButton}>
-                        <NavigationButton
-                          route={`goodside/animals/biome/${data.id}`}
-                          text={handleButtonText(data.name)}
-                          buttonType='animals'
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <InformationCard type={'threat'} threat={data} />
-                  )}
-                </div>
-              </AnimationOnScroll>
-            </div>
-          </VisibilitySensor>
-        ))}
+    <>
+      <div className={styles.container}>
+        <Header title={getTitle()}></Header>
+        <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
+          {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
+            <VisibilitySensor
+              partialVisibility
+              onChange={isVisible => changeTitle(data.name, isVisible, i)}
+              scrollCheck
+              key={i}
+            >
+              <div className={styles.pageContainer} id={data.name}>
+                <AnimationOnScroll
+                  animateIn='animate__fadeIn'
+                  animateOut='animate__fadeOut'
+                  style={{ width: 'auto' }}
+                  offset={0}
+                >
+                  <div className={styles.mapContainer}>
+                    <Image url={`${process.env.REACT_APP_API_URL}/${data.map.path}`} alt={data.map.name} />
+                    <ScrollButton onClick={() => scrollTo(document.getElementById(`page-${i}`))}></ScrollButton>
+                  </div>
+                </AnimationOnScroll>
+                <AnimationOnScroll
+                  animateIn='animate__fadeIn'
+                  animateOut='animate__fadeOut'
+                  style={{ width: '100%' }}
+                  offset={0}
+                >
+                  <div className={styles.cardContainer} id={`page-${i}`}>
+                    {type === 'good' ? (
+                      <>
+                        <InformationCard type={'biome'} biome={data} />
+                        <div className={styles.containerButton}>
+                          <NavigationButton
+                            route={`goodside/animals/biome/${data.id}`}
+                            text={handleButtonText(data.name)}
+                            buttonType='animals'
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <InformationCard type={'threat'} threat={data} />
+                    )}
+                  </div>
+                </AnimationOnScroll>
+              </div>
+            </VisibilitySensor>
+          ))}
+        </div>
+        <ScrollUpPage />
       </div>
-    </div>
+    </>
   );
 }

@@ -7,8 +7,8 @@ import Image from '../Image';
 import styles from './styles.module.scss';
 
 type ImageCarouselProps = {
-  images: null | string[];
-  type: null | string;
+  images?: string[];
+  type: string;
 };
 
 export default function ImageCarousel({ images, type }: ImageCarouselProps) {
@@ -17,7 +17,7 @@ export default function ImageCarousel({ images, type }: ImageCarouselProps) {
   const responsive = {
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: type === 'animal' ? 2 : 3,
+      items: 3,
       // slidesToSlide: 3
     },
     tablet: {

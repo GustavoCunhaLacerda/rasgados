@@ -5,13 +5,13 @@
   justify-content: space-evenly;
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  // padding: 2rem;
 
   // border-radius: 20px 0 0 20px;
 }
 
 .iconContainer {
-  width: 80%;
+  width: 100%;
   max-width: 300px;
   margin-bottom: 2rem;
   display: flex;
@@ -47,7 +47,7 @@
 
   .csIcon {
     filter: drop-shadow(0 2px 4px rgba($color: #000000, $alpha: 0.25));
-    width: 60%;
+    width: 60px;
   }
 
   .csText {
@@ -80,5 +80,5 @@
   margin-bottom: 2rem;
 
   color: #e74c3c;
-  text-shadow: 0 2px 4px rgba($color: #000000, $alpha: 0.25);
+  text-shadow: 0 2px 4px rgba($color: #e74c3c, $alpha: 0.25);
 }

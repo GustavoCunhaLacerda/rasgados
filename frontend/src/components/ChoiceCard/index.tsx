@@ -8,25 +8,20 @@ type ChoiceCardProps = {
   route: string;
 };
 
-type Choices = {
-  goodside: any;
-  badside: any;
-};
-
 export default function ChoiceCard({ route }: ChoiceCardProps) {
-  function imageFromRoute(route: keyof Choices) {
-    const choices: Choices = {
+  function imageFromRoute(route: string) {
+    const choices: { [key: string]: any } = {
       goodside: amazoniaGood,
       badside: amazoniaBad,
     };
 
-    return choices[route];
+    return choices[route] ?? null;
   }
 
   return (
     <div className={styles.card} data-route={`${route}`}>
       <div className={styles.containerImage} data-route={`${route}`}>
-        <img src={imageFromRoute(route as keyof Choices)} alt={`${route}`} />
+        <img src={imageFromRoute(route)} alt={`${route}`} />
       </div>
       <div className={styles.containerFooter}>
         <NavigationButton route={route} text='iniciar' buttonType={route} />

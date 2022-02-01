@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 type DescriptionProps = {
-  text: null | string;
+  text?: string;
 };
 
 export default function Description({ text }: DescriptionProps) {

@@ -12,18 +12,36 @@
 .animalContainer {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  height: auto;
+  height: 100%;
+  padding: 5%;
+}
+
+.carouselContainer {
+  width: 100%;
+  overflow: hidden;
 }
 
 .cardContent {
   width: 70%;
-  padding: 40px 0 40px 0;
+  padding: 2rem 0;
+
+  &[data-animal] {
+    padding: 0;
+  }
 }
 
 .line {
   height: 1px;
-  background: #cccccc55;
+  background: #cccccc75;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.divider {
+  width: 1px;
+  background: #cccccc75;
+  margin: 0 20px;
 }

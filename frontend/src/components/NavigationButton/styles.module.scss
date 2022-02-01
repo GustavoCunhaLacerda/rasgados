@@ -46,6 +46,7 @@
 
   &[data-route='animals'] {
     width: 40%;
+    min-height: 60px;
     background: linear-gradient(108.08deg, rgb(231, 76, 60) 0%, rgb(192, 57, 43) 100%);
 
     &:hover {

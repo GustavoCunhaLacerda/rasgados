@@ -13,7 +13,7 @@ export default function NavigationButton({ route, text, buttonType }: Navigation
   return (
     <Link to={`/${route}`} className={styles.button} data-route={`${buttonType}`}>
       <span>{text}</span>
-      <img src={WhiteRightArrow} alt='Seta para a direita' />{' '}
+      <img src={WhiteRightArrow} alt='Seta para a direita' />
     </Link>
   );
 }

@@ -1,0 +1,11 @@
+.scrollUp {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(108.08deg, rgb(231, 76, 60) 0%, rgb(192, 57, 43) 100%);
+  border-radius: 35%;
+
+  &:hover {
+    box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.3), -0.1rem -0.1rem 0.5rem rgba(231, 76, 60, 0.5),
+      0.1rem 0.1rem 0.5rem rgba(192, 57, 43, 0.5);
+  }
+}

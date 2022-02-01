@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import animateScrollTo from 'animated-scroll-to';
+import { TailSpin } from 'react-loader-spinner';
+
+import Header from '../../components/Header';
+import InformationCard from '../../components/InformationCard';
+import ScrollUpPage from '../../components/ScrollUpPage';
 
 import { Animal } from '../../api/animals';
 import { Biome } from '../../api/biomes';
-import Header from '../../components/Header';
-import ScrollButton from '../../components/ScrollButton';
-import AnimalAside from '../../components/AnimalAside';
 import { api } from '../../api';
 
 import styles from './styles.module.scss';
 
 import background from '../../assets/background-images/Background-Tour.png';
-import InformationCard from '../../components/InformationCard';
-import { TailSpin } from 'react-loader-spinner';
 
 type AnimalsParams = {
   biomeId: string;
@@ -39,16 +39,6 @@ export default function Animals() {
     fetchData();
   }, []);
 
-  function scrollTo(el: HTMLElement | null) {
-    if (el) {
-      console.log('👌');
-      animateScrollTo(el, {
-        verticalOffset: -90,
-        speed: 750,
-      }).then(_ => {});
-    }
-  }
-
   return loading ? (
     <TailSpin width={80} height={80} color='#e74c3c' wrapperClass={styles.loadingContainer} />
   ) : (
@@ -66,12 +56,11 @@ export default function Animals() {
               <div className={styles.cardContainer}>
                 <InformationCard type={'animal'} animal={animal} />
               </div>
-
-              {/* <ScrollButton onClick={() => scrollTo(document.getElementById(`card-${i + 1}`))}></ScrollButton> */}
             </AnimationOnScroll>
           </div>
         ))}
       </div>
+      <ScrollUpPage />
     </div>
   );
 }

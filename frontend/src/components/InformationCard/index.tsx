@@ -32,17 +32,17 @@ export default function InformationCard({ type, animal, biome, threat }: Informa
         <div className={styles.animalContainer}>
           <AnimalAside animal={getData(type) as Animal} />
           <div className={styles.divider}></div>
-          {/* <div className={styles.cardContent}>
-            <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
+          <div className={styles.cardContent} data-animal>
+            <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
             <div className={styles.line} />
-            <Description text={getData(type)?.description ?? null} />
-          </div> */}
+            <Description text={getData(type)?.description} />
+          </div>
         </div>
       ) : (
         <div className={styles.cardContent}>
-          <ImageCarousel images={getData(type)?.images.map(image => image.path) ?? null} type={type} />
+          <ImageCarousel images={getData(type)?.images.map(image => image.path)} type={type} />
           <div className={styles.line} />
-          <Description text={getData(type)?.description ?? null} />
+          <Description text={getData(type)?.description} />
         </div>
       )}
     </div>

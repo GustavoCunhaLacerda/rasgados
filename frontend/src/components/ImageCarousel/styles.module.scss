@@ -1,15 +1,22 @@
 .imageItem {
   padding: 10px;
   border-radius: 10px;
+  max-height: 300px;
 
   > img {
     border-radius: 10px;
     filter: drop-shadow(0 0 2px rgba($color: #000000, $alpha: 0.5));
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4/3;
   }
 }
 
 .containerWithDots {
   padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .dotActive {
