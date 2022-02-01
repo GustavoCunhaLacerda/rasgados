@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { TailSpin } from 'react-loader-spinner';
+import { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type ImageProps = {
   url: string;
@@ -18,10 +18,21 @@ const Image = ({ url, alt, id }: ImageProps) => {
 
   return (
     <>
-      <TailSpin width={80} height={80} color='#e74c3c' wrapperClass={styles.loadingContainer} visible={loading} />
+      <TailSpin
+        width={80}
+        height={80}
+        color="#e74c3c"
+        wrapperClass={styles.loadingContainer}
+        visible={loading}
+      />
       <img
         draggable={false}
-        style={{ width: '100%', height: '100%', position: 'relative' }}
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          objectFit: "cover",
+        }}
         src={url}
         alt={alt}
         onLoad={imageOnLoad}
