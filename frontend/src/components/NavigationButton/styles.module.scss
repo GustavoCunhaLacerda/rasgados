@@ -55,4 +55,8 @@
         0.125rem 0.125rem 1rem rgba(192, 57, 43, 0.5);
     }
   }
+
+  @media screen and (max-width: 600px) {
+    width: 100% !important;
+  }
 }

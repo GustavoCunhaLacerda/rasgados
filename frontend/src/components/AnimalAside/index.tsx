@@ -61,8 +61,10 @@ export default function AnimalAside({ animal }: AnimalAsideProps) {
         />
         <span className={styles.csText}>{conservationStatusDecider[animal.conservationStatus].name}</span>
       </div>
-      <span className={styles.name}>{animal.name.toUpperCase()}</span>
-      <span className={styles.scientificName}>{animal.cientificName}</span>
+      <div className={styles.text}>
+        <span className={styles.name}>{animal.name.toUpperCase()}</span>
+        <span className={styles.scientificName}>{animal.cientificName}</span>
+      </div>
     </div>
   );
 }

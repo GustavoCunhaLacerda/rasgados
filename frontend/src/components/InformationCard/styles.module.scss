@@ -94,3 +94,13 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .cardWithAnimal {
+    flex-direction: column;
+
+    .animalContainer {
+      width: 100%;
+    }
+  }
+}

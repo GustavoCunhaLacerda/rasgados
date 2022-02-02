@@ -39,6 +39,7 @@
 
 .sectionsContainer {
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -57,7 +58,7 @@
 
 .link {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 1rem;
   color: #e5e5e5;
@@ -66,5 +67,32 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sectionsContainer {
+    flex-direction: column;
+    align-items: center;
+
+    .section {
+      align-items: center;
+      &:first-child {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .warning {
+    flex-direction: column;
+    align-items: center;
+
+    h5 {
+      margin-right: 0;
+    }
+
+    span {
+      text-align: center;
+    }
   }
 }

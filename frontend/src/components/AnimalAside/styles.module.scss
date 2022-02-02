@@ -53,6 +53,11 @@
   }
 }
 
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
 .name {
   font-size: calc(1.3rem + 1vmin);
   font-weight: bold;
@@ -72,4 +77,14 @@
 
   color: #e74c3c;
   text-shadow: 0 2px 4px rgba($color: #e74c3c, $alpha: 0.25);
+}
+
+@media screen and (max-width: 600px) {
+  .name {
+    margin: 1rem 0;
+  }
+
+  .scientificName {
+    margin-bottom: 1rem;
+  }
 }
