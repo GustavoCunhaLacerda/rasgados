@@ -18,15 +18,12 @@ import { Threat } from '../../api/threats';
 import styles from './styles.module.scss';
 
 import background from '../../assets/background-images/Background-Tour.png';
-import { useLocation } from 'react-router';
 
 type TourProps = {
   type: 'good' | 'bad';
 };
 
 export default function Tour({ type }: TourProps) {
-  const { state } = useLocation();
-
   const [titleStack, setTitleStack] = useState<string[]>([]);
 
   const [biomes, setBiomes] = useState<Biome[]>([]);
@@ -79,12 +76,7 @@ export default function Tour({ type }: TourProps) {
         <Header title={getTitle()}></Header>
         <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
           {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
-            <VisibilitySensor
-              partialVisibility
-              onChange={isVisible => changeTitle(data.name, isVisible, i)}
-              scrollCheck
-              key={i}
-            >
+            <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.name, isVisible, i)} key={i}>
               <div className={styles.pageContainer}>
                 <AnimationOnScroll
                   animateIn='animate__fadeIn'
