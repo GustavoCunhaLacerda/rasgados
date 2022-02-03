@@ -16,7 +16,7 @@ export enum ConservationStatus {
 export type Animal = {
   id: number;
   name: string;
-  cientificName: string;
+  scientificName: string;
   otherNames: string[];
   conservationStatus: ConservationStatus;
   description: string;

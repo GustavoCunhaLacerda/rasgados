@@ -10,7 +10,7 @@ export async function cerrado() {
   const antaImages = animals['anta']['images'].map((image: string) => buildPrismaImage(image));
   const antaData: Prisma.AnimalCreateInput = {
     name: 'Anta',
-    cientificName: 'Tapirus terrestris',
+    scientificName: 'Tapirus terrestris',
     otherNames: ['Anta-brasileira', 'Tapir'],
     conservationStatus: 'VU',
     description:
@@ -25,7 +25,7 @@ export async function cerrado() {
     },
   };
   const anta = await prisma.animal.upsert({
-    where: { cientificName: 'Tapirus terrestris' },
+    where: { scientificName: 'Tapirus terrestris' },
     update: antaData,
     create: {
       ...antaData,
@@ -44,7 +44,7 @@ export async function cerrado() {
   const cachorroVinagreImages = animals['cachorro_vinagre']['images'].map((image: string) => buildPrismaImage(image));
   const cachorroVinagreData: Prisma.AnimalCreateInput = {
     name: 'Cachorro-vinagre',
-    cientificName: 'Speothos venaticus',
+    scientificName: 'Speothos venaticus',
     otherNames: ['Aracambé', 'Jaguacininga', 'Jaguaracambé', 'Janauíra', 'Januaíra'],
     conservationStatus: 'VU',
     description:
@@ -59,7 +59,7 @@ export async function cerrado() {
     },
   };
   const cachorroVinagre = await prisma.animal.upsert({
-    where: { cientificName: 'Speothos venaticus' },
+    where: { scientificName: 'Speothos venaticus' },
     update: cachorroVinagreData,
     create: {
       ...cachorroVinagreData,
@@ -78,7 +78,7 @@ export async function cerrado() {
   const gatoMaracajaImages = animals['gato_maracaja']['images'].map((image: string) => buildPrismaImage(image));
   const gatoMaracajaData: Prisma.AnimalCreateInput = {
     name: 'Gato-maracajá',
-    cientificName: 'Leopardus wiedii',
+    scientificName: 'Leopardus wiedii',
     otherNames: ['Maracajá', 'Margay'],
     conservationStatus: 'VU',
     description:
@@ -93,7 +93,7 @@ export async function cerrado() {
     },
   };
   const gatoMaracaja = await prisma.animal.upsert({
-    where: { cientificName: 'Leopardus wiedii' },
+    where: { scientificName: 'Leopardus wiedii' },
     update: gatoMaracajaData,
     create: {
       ...gatoMaracajaData,
@@ -112,7 +112,7 @@ export async function cerrado() {
   const loboGuaraImages = animals['lobo_guara']['images'].map((image: string) => buildPrismaImage(image));
   const loboGuaraData: Prisma.AnimalCreateInput = {
     name: 'Lobo-guará',
-    cientificName: 'Chrysocyon brachyurus',
+    scientificName: 'Chrysocyon brachyurus',
     otherNames: ['Lobo-de-crina', 'Lobo-vermelho', 'Aguará', 'Aguaraçu'],
     conservationStatus: 'VU',
     description:
@@ -127,7 +127,7 @@ export async function cerrado() {
     },
   };
   const loboGuara = await prisma.animal.upsert({
-    where: { cientificName: 'Chrysocyon brachyurus' },
+    where: { scientificName: 'Chrysocyon brachyurus' },
     update: loboGuaraData,
     create: {
       ...loboGuaraData,
@@ -148,7 +148,7 @@ export async function cerrado() {
   );
   const morceguinhoDoCerradoData: Prisma.AnimalCreateInput = {
     name: 'Morceguinho-do-cerrado',
-    cientificName: 'Lonchophylla dekeyseri',
+    scientificName: 'Lonchophylla dekeyseri',
     otherNames: [],
     conservationStatus: 'EN',
     description:
@@ -163,7 +163,7 @@ export async function cerrado() {
     },
   };
   const morceguinhoDoCerrado = await prisma.animal.upsert({
-    where: { cientificName: 'Lonchophylla dekeyseri' },
+    where: { scientificName: 'Lonchophylla dekeyseri' },
     update: morceguinhoDoCerradoData,
     create: {
       ...morceguinhoDoCerradoData,

@@ -63,7 +63,7 @@ export default function AnimalAside({ animal }: AnimalAsideProps) {
       </div>
       <div className={styles.text}>
         <span className={styles.name}>{animal.name.toUpperCase()}</span>
-        <span className={styles.scientificName}>{animal.cientificName}</span>
+        <span className={styles.scientificName}>{animal.scientificName}</span>
       </div>
     </div>
   );

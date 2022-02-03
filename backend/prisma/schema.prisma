@@ -33,7 +33,7 @@ model Animal {
   iconId             Int?               @unique
   images             Image[]            @relation("AnimalImages")
   name               String
-  cientificName      String             @unique
+  scientificName     String             @unique
   otherNames         String[]
   conservationStatus ConservationStatus
   description        String

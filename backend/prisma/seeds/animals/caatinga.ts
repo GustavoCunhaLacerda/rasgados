@@ -10,7 +10,7 @@ export async function caatinga() {
   const araraAzulDeLearImages = animals['arara_azul_de_lear']['images'].map((image: string) => buildPrismaImage(image));
   const araraAzulDeLearData: Prisma.AnimalCreateInput = {
     name: 'Arara-azul-de-lear',
-    cientificName: 'Anodorhynchus leari',
+    scientificName: 'Anodorhynchus leari',
     otherNames: ['Arara', 'Arara-azul-menor'],
     conservationStatus: 'EN',
     description:
@@ -25,7 +25,7 @@ export async function caatinga() {
     },
   };
   const araraAzulDeLear = await prisma.animal.upsert({
-    where: { cientificName: 'Anodorhynchus leari' },
+    where: { scientificName: 'Anodorhynchus leari' },
     update: araraAzulDeLearData,
     create: {
       ...araraAzulDeLearData,
@@ -44,7 +44,7 @@ export async function caatinga() {
   const guigoDaCaatingaImages = animals['guigo_da_caatinga']['images'].map((image: string) => buildPrismaImage(image));
   const guigoDaCaatingaData: Prisma.AnimalCreateInput = {
     name: 'Guigó-da-caatinga',
-    cientificName: 'Callicebus barbarabrownae',
+    scientificName: 'Callicebus barbarabrownae',
     otherNames: ['Guigó', 'Sauá-loiro', 'Pangola'],
     conservationStatus: 'CR',
     description:
@@ -59,7 +59,7 @@ export async function caatinga() {
     },
   };
   const guigoDaCaatinga = await prisma.animal.upsert({
-    where: { cientificName: 'Callicebus barbarabrownae' },
+    where: { scientificName: 'Callicebus barbarabrownae' },
     update: guigoDaCaatingaData,
     create: {
       ...guigoDaCaatingaData,
@@ -78,7 +78,7 @@ export async function caatinga() {
   const queixadaImages = animals['queixada']['images'].map((image: string) => buildPrismaImage(image));
   const queixadaData: Prisma.AnimalCreateInput = {
     name: 'Queixada',
-    cientificName: 'Tayassu pecari',
+    scientificName: 'Tayassu pecari',
     otherNames: ['Porco-do-mato', 'Queixo-ruivo', 'Taiaçu', 'Cariblanco', 'Chancho do monte'],
     conservationStatus: 'VU',
     description:
@@ -93,7 +93,7 @@ export async function caatinga() {
     },
   };
   const queixada = await prisma.animal.upsert({
-    where: { cientificName: 'Tayassu pecari' },
+    where: { scientificName: 'Tayassu pecari' },
     update: queixadaData,
     create: {
       ...queixadaData,
@@ -114,7 +114,7 @@ export async function caatinga() {
   );
   const soldadinhoDoAraripeData: Prisma.AnimalCreateInput = {
     name: 'Soldadinho-do-araripe',
-    cientificName: 'Antilophia bokermann',
+    scientificName: 'Antilophia bokermann',
     otherNames: [
       'Galo-da-mata',
       'Língua-de-tamanduá',
@@ -135,7 +135,7 @@ export async function caatinga() {
     },
   };
   const soldadinhoDoAraripe = await prisma.animal.upsert({
-    where: { cientificName: 'Antilophia bokermann' },
+    where: { scientificName: 'Antilophia bokermann' },
     update: soldadinhoDoAraripeData,
     create: {
       ...soldadinhoDoAraripeData,
@@ -154,7 +154,7 @@ export async function caatinga() {
   const tatuBolaImages = animals['tatu_bola']['images'].map((image: string) => buildPrismaImage(image));
   const tatuBolaData: Prisma.AnimalCreateInput = {
     name: 'Tatu Bola',
-    cientificName: 'Tolypeutes tricinctus',
+    scientificName: 'Tolypeutes tricinctus',
     otherNames: ['tatu-apara', 'bola', 'bolinha', 'tranquinha', 'tatu-bola-do-nordeste'],
     conservationStatus: 'EN',
     description:
@@ -169,7 +169,7 @@ export async function caatinga() {
     },
   };
   const tatuBola = await prisma.animal.upsert({
-    where: { cientificName: 'Tolypeutes tricinctus' },
+    where: { scientificName: 'Tolypeutes tricinctus' },
     update: tatuBolaData,
     create: {
       ...tatuBolaData,
