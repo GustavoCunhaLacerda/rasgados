@@ -15,6 +15,8 @@ import { api } from '../../api';
 import styles from './styles.module.scss';
 
 import background from '../../assets/background-images/Background-Tour.png';
+import ScrollButton from '../../components/ScrollButton';
+import { scrollTo } from '../Tour';
 
 type AnimalsParams = {
   biomeId: string;
@@ -45,8 +47,8 @@ export default function Animals() {
     <div className={styles.container}>
       <Header title={biome?.name ?? ''}></Header>
       <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-        {animals?.map((animal, i) => (
-          <div className={styles.pageContainer} key={i}>
+        {animals?.map((animal, i, arr) => (
+          <div className={styles.pageContainer} key={i} id={`page-animal-${i}`}>
             <AnimationOnScroll
               animateIn='animate__fadeIn'
               animateOut='animate__fadeOut'
@@ -57,6 +59,12 @@ export default function Animals() {
                 <InformationCard type={'animal'} animal={animal} />
               </div>
             </AnimationOnScroll>
+            {i !== arr.length - 1 ? (
+              <ScrollButton
+                parentElId={`page-animal-${i}`}
+                onClick={() => scrollTo(document.getElementById(`page-animal-${i + 1}`))}
+              ></ScrollButton>
+            ) : null}
           </div>
         ))}
       </div>

@@ -23,6 +23,15 @@ type TourProps = {
   type: 'good' | 'bad';
 };
 
+export function scrollTo(el: HTMLElement | null, verticalOffset: number = -80) {
+  if (el) {
+    animateScrollTo(el, {
+      verticalOffset,
+      speed: 750,
+    });
+  }
+}
+
 export default function Tour({ type }: TourProps) {
   const [titleStack, setTitleStack] = useState<string[]>([]);
 
@@ -55,15 +64,6 @@ export default function Tour({ type }: TourProps) {
     return titleStack[titleStack.length - 1];
   }
 
-  function scrollTo(el: HTMLElement | null, verticalOffset: number = -80) {
-    if (el) {
-      animateScrollTo(el, {
-        verticalOffset,
-        speed: 750,
-      });
-    }
-  }
-
   function handleButtonText(biome: string) {
     return ['Cerrado', 'Pampa', 'Pantanal'].includes(biome) ? `Ver animais do ${biome}` : `Ver animais da ${biome}`;
   }
@@ -75,9 +75,9 @@ export default function Tour({ type }: TourProps) {
       <div className={styles.container}>
         <Header title={getTitle()}></Header>
         <div className={styles.background} style={{ backgroundImage: `url(${background})` }}>
-          {Object.values(type === 'good' ? biomes : threats).map((data, i) => (
+          {Object.values(type === 'good' ? biomes : threats).map((data, i, arr) => (
             <VisibilitySensor partialVisibility onChange={isVisible => changeTitle(data.name, isVisible, i)} key={i}>
-              <div className={styles.pageContainer}>
+              <div className={styles.pageContainer} id={`page-${i}`}>
                 <AnimationOnScroll
                   animateIn='animate__fadeIn'
                   animateOut='animate__fadeOut'
@@ -86,7 +86,6 @@ export default function Tour({ type }: TourProps) {
                 >
                   <div className={styles.mapContainer}>
                     <Image url={`${process.env.REACT_APP_API_URL}/${data.map.path}`} alt={data.map.name} />
-                    <ScrollButton onClick={() => scrollTo(document.getElementById(`page-${i}`))}></ScrollButton>
                   </div>
                 </AnimationOnScroll>
                 <AnimationOnScroll
@@ -95,7 +94,7 @@ export default function Tour({ type }: TourProps) {
                   style={{ width: '100%' }}
                   offset={0}
                 >
-                  <div className={styles.cardContainer} id={`page-${i}`}>
+                  <div className={styles.cardContainer}>
                     {type === 'good' ? (
                       <>
                         <InformationCard type={'biome'} biome={data} />
@@ -112,6 +111,12 @@ export default function Tour({ type }: TourProps) {
                     )}
                   </div>
                 </AnimationOnScroll>
+                {i !== arr.length - 1 ? (
+                  <ScrollButton
+                    parentElId={`page-${i}`}
+                    onClick={() => scrollTo(document.getElementById(`page-${i + 1}`))}
+                  ></ScrollButton>
+                ) : null}
               </div>
             </VisibilitySensor>
           ))}
