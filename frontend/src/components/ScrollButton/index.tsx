@@ -21,8 +21,6 @@ export default function ScrollButton({ onClick, parentElId }: ScrollButtonProps)
       const heightFromTop = relativeTop - currentScroll;
       const inScreenHeight = viewportHeight - heightFromTop;
       setShow(inScreenHeight > viewportHeight * 0.4);
-      // const show = inScreenHeight > viewportHeight * 0.25;
-      console.log(parentElId, heightFromTop, inScreenHeight, show);
     }
     setParentEl(document.getElementById(parentElId ?? ''));
 
